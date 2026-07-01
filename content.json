@@ -1,0 +1,89 @@
+{
+  "hero": {
+    "tag": "For Churches & Faith Organizations",
+    "h1": "Design that speaks<br><em>your language.</em>",
+    "sub": "With <strong>over 15 years of experience</strong>, I've worked alongside faith organizations — from complete rebrands to weekly print materials, curricula, and publishing. I understand the mission, the timeline, and what it takes to communicate it well.",
+    "video": "hero-video.mp4"
+  },
+  "services": [
+    {
+      "num": "01",
+      "image": "",
+      "imageAlt": "Brand Identity",
+      "title": "Brand Identity &amp; Visual Systems",
+      "description": "Logo, color palette, typography, and brand guidelines — everything your team needs to communicate consistently across every platform."
+    },
+    {
+      "num": "02",
+      "image": "",
+      "imageAlt": "Print & Editorial",
+      "title": "Print &amp; Editorial Layout",
+      "description": "Booklets, prayer guides, handbooks, study materials, and curriculum — designed to be read, kept, and passed on."
+    },
+    {
+      "num": "03",
+      "image": "",
+      "imageAlt": "Sermon Series Graphics",
+      "title": "Sermon Series Graphics",
+      "description": "Series branding, social media packages, screen slides, and promotional assets — built for your cadence, consistent across every touchpoint."
+    },
+    {
+      "num": "04",
+      "image": "",
+      "imageAlt": "Event Brand Identity",
+      "title": "Event Brand Identity",
+      "description": "Visual identity for conferences, retreats, camps, and special services — a cohesive look that extends across print, digital, and on-site signage."
+    },
+    {
+      "num": "05",
+      "image": "",
+      "imageAlt": "Book & Bible Design",
+      "title": "Book &amp; Bible Design",
+      "description": "Editorial design for Christian publishers — devotionals, study Bibles, curricula, and resources built to hold up across print runs and formats."
+    },
+    {
+      "num": "06",
+      "image": "",
+      "imageAlt": "Web & Digital",
+      "title": "Web &amp; Digital",
+      "description": "Website layouts, app screen design, and digital assets — visual systems that translate from print to screen without losing integrity."
+    }
+  ],
+  "about": {
+    "photo": "",
+    "photoAlt": "Bárbara Soriano",
+    "stats": [
+      { "num": "50+", "label": "US churches" },
+      { "num": "15+", "label": "Years experience" },
+      { "num": "20+", "label": "Countries reached" }
+    ],
+    "h2": "Identity for <em>faith</em><br>communities.",
+    "paragraphs": [
+      "I'm a brand and graphic designer based in Buenos Aires with over <strong>15 years of experience</strong>. For three years I was part of the <strong>Church Media Squad</strong> team, producing weekly visual content and print materials for churches across the United States.",
+      "I've also worked with <strong>e625</strong> — a pan-Latin American Christian media organization — designing books, Bibles, curricula, and digital content distributed across 20+ countries.",
+      "I've led full rebrands for multiple churches — from identity and brand guidelines through to signage, print, and digital — and I've designed everything from sermon booklets to membership handbooks to staff manuals across dozens of different church identities and sizes.",
+      "I know your world. I know the cadence, the budget conversations, the last-minute sermon series graphic, and the care that goes into a prayer guide. That's not something you have to explain to me."
+    ],
+    "ctaText": "Start a conversation →"
+  },
+  "testimonials": [
+    {
+      "quote": "\"Bárbara understood exactly what we needed to communicate, and turned it into an identity we are proud of.\"",
+      "attr": "— Add client name · Organization"
+    },
+    {
+      "quote": "\"She didn't just deliver a design — she delivered a language our whole team could speak.\"",
+      "attr": "— Add client name · Organization"
+    },
+    {
+      "quote": "\"Working with Bárbara felt like having a creative director who truly understood our mission from day one.\"",
+      "attr": "— Add client name · Organization"
+    }
+  ],
+  "contact": {
+    "h2": "Have a project<br>in mind? <em>Let's talk<br>about it.</em>",
+    "intro": "I take on a limited number of projects at a time — so the work gets the attention it deserves.",
+    "email": "hello@barbarasoriano.com",
+    "responseTime": "I respond within 48 hours."
+  }
+}
