@@ -1,0 +1,714 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Edit · Churches Page</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Inter:wght@400;500&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --dark: #0D0D0A; --dark2: #161613; --cream: #EDE8DF; --cream2: #E3DDCF;
+      --teal: #00CCA8; --teal-bg: #1A3D2E;
+      --text-dark: #1A1A17; --text-light: #EDE8DF;
+      --muted-dark: #7A7A6E; --muted-light: rgba(237,232,223,0.55);
+      --border-l: rgba(26,26,23,0.12); --border-d: rgba(237,232,223,0.1);
+      --serif: 'Cormorant Garamond', Georgia, serif;
+      --sans: 'Inter', system-ui, sans-serif;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: var(--sans); background: var(--dark); color: var(--text-light); min-height: 100vh; }
+    a { color: var(--teal); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    /* ── LOGIN ── */
+    #login-screen {
+      min-height: 100vh; display: flex; align-items: center; justify-content: center;
+      background: var(--dark);
+    }
+    .login-card {
+      background: var(--dark2); border: 1px solid var(--border-d);
+      padding: 3rem 2.5rem; max-width: 420px; width: 100%;
+    }
+    .login-card h1 {
+      font-family: var(--serif); font-size: 2rem; font-weight: 300;
+      margin-bottom: 0.5rem; color: var(--cream);
+    }
+    .login-card p { font-size: 0.875rem; color: var(--muted-light); margin-bottom: 2rem; line-height: 1.7; }
+    .login-card label { display: block; font-size: 0.75rem; font-weight: 500; letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted-light); margin-bottom: 0.5rem; }
+    .login-card input {
+      width: 100%; padding: 0.75rem 0.875rem; background: var(--dark);
+      border: 1px solid var(--border-d); color: var(--cream);
+      font-family: var(--sans); font-size: 0.875rem; outline: none;
+      transition: border-color 0.2s;
+    }
+    .login-card input:focus { border-color: var(--teal); }
+    .login-card .btn-login {
+      width: 100%; padding: 0.875rem; margin-top: 1.25rem;
+      background: var(--teal); color: var(--dark);
+      border: none; font-family: var(--sans); font-size: 0.8rem;
+      font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase;
+      cursor: pointer; transition: opacity 0.2s;
+    }
+    .login-card .btn-login:hover { opacity: 0.85; }
+    .login-error { color: #ff6b6b; font-size: 0.8rem; margin-top: 0.75rem; display: none; }
+
+    /* ── MAIN LAYOUT ── */
+    #app { display: none; }
+    header {
+      background: var(--dark2); border-bottom: 1px solid var(--border-d);
+      padding: 0 2rem; height: 56px;
+      display: flex; align-items: center; justify-content: space-between;
+      position: sticky; top: 0; z-index: 100;
+    }
+    .header-left { display: flex; align-items: center; gap: 1rem; }
+    .header-logo { font-family: var(--serif); font-size: 1.25rem; font-weight: 300; color: var(--cream); }
+    .header-badge { font-size: 0.7rem; background: var(--teal-bg); color: var(--teal); padding: 0.2rem 0.6rem; letter-spacing: 0.06em; text-transform: uppercase; }
+    .header-right { display: flex; align-items: center; gap: 0.75rem; }
+    .btn-preview { font-size: 0.75rem; color: var(--muted-light); padding: 0.4rem 0.9rem; border: 1px solid var(--border-d); cursor: pointer; background: transparent; font-family: var(--sans); transition: border-color 0.2s, color 0.2s; }
+    .btn-preview:hover { border-color: var(--cream); color: var(--cream); }
+    .btn-publish {
+      font-size: 0.75rem; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase;
+      color: var(--dark); background: var(--teal); padding: 0.5rem 1.25rem;
+      border: none; cursor: pointer; font-family: var(--sans); transition: opacity 0.2s;
+    }
+    .btn-publish:hover { opacity: 0.85; }
+    .btn-publish:disabled { opacity: 0.4; cursor: not-allowed; }
+    .publish-status { font-size: 0.75rem; color: var(--teal); opacity: 0; transition: opacity 0.3s; }
+    .publish-status.visible { opacity: 1; }
+
+    /* ── SIDEBAR + CONTENT ── */
+    .layout { display: flex; min-height: calc(100vh - 56px); }
+    nav.sidebar {
+      width: 200px; flex-shrink: 0; background: var(--dark2);
+      border-right: 1px solid var(--border-d); padding: 1.5rem 0;
+      position: sticky; top: 56px; height: calc(100vh - 56px); overflow-y: auto;
+    }
+    nav.sidebar a {
+      display: block; padding: 0.6rem 1.5rem; font-size: 0.8rem;
+      color: var(--muted-light); text-decoration: none; transition: color 0.2s, background 0.2s;
+      border-left: 2px solid transparent;
+    }
+    nav.sidebar a:hover, nav.sidebar a.active {
+      color: var(--cream); background: rgba(237,232,223,0.04);
+      border-left-color: var(--teal);
+    }
+    nav.sidebar .nav-section-label {
+      padding: 1.25rem 1.5rem 0.4rem; font-size: 0.65rem; letter-spacing: 0.1em;
+      text-transform: uppercase; color: var(--muted-dark);
+    }
+    .editor-area { flex: 1; padding: 2.5rem 3rem; max-width: 840px; }
+
+    /* ── SECTION PANELS ── */
+    .section-panel { display: none; }
+    .section-panel.active { display: block; }
+    .panel-title { font-family: var(--serif); font-size: 1.75rem; font-weight: 300; color: var(--cream); margin-bottom: 0.25rem; }
+    .panel-sub { font-size: 0.8rem; color: var(--muted-light); margin-bottom: 2.5rem; }
+
+    /* ── FIELDS ── */
+    .field { margin-bottom: 1.75rem; }
+    .field-label { font-size: 0.72rem; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted-light); margin-bottom: 0.5rem; display: block; }
+    .field-hint { font-size: 0.72rem; color: var(--muted-dark); margin-top: 0.35rem; }
+    .field input[type="text"],
+    .field input[type="email"],
+    .field textarea {
+      width: 100%; padding: 0.7rem 0.875rem;
+      background: var(--dark2); border: 1px solid var(--border-d);
+      color: var(--cream); font-family: var(--sans); font-size: 0.875rem;
+      outline: none; transition: border-color 0.2s; resize: vertical;
+    }
+    .field input:focus, .field textarea:focus { border-color: var(--teal); }
+    .field textarea { min-height: 80px; line-height: 1.6; }
+    .field textarea.tall { min-height: 120px; }
+
+    /* ── IMAGE UPLOADER ── */
+    .img-uploader {
+      border: 1px dashed var(--border-d); padding: 1.5rem;
+      display: flex; gap: 1.25rem; align-items: flex-start;
+      transition: border-color 0.2s;
+    }
+    .img-uploader:hover { border-color: var(--teal); }
+    .img-preview {
+      width: 120px; height: 90px; flex-shrink: 0;
+      background: var(--dark2); display: flex; align-items: center;
+      justify-content: center; overflow: hidden; position: relative;
+    }
+    .img-preview img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .img-preview .img-empty { font-size: 0.65rem; color: var(--muted-dark); text-align: center; padding: 0.5rem; line-height: 1.5; }
+    .img-actions { flex: 1; display: flex; flex-direction: column; gap: 0.75rem; }
+    .img-actions .file-btn {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      padding: 0.5rem 1rem; font-size: 0.75rem; font-weight: 500;
+      background: transparent; border: 1px solid var(--border-d); color: var(--cream);
+      cursor: pointer; font-family: var(--sans); transition: border-color 0.2s;
+    }
+    .img-actions .file-btn:hover { border-color: var(--teal); }
+    .img-actions input[type="file"] { display: none; }
+    .img-url-input {
+      width: 100%; padding: 0.5rem 0.75rem; font-size: 0.8rem;
+      background: var(--dark); border: 1px solid var(--border-d);
+      color: var(--muted-light); font-family: var(--sans); outline: none;
+    }
+    .img-url-input:focus { border-color: var(--teal); color: var(--cream); }
+    .img-progress { font-size: 0.72rem; color: var(--teal); display: none; }
+
+    /* ── SERVICE TILE EDITOR ── */
+    .tile-card {
+      background: var(--dark2); border: 1px solid var(--border-d);
+      padding: 1.5rem; margin-bottom: 1rem;
+    }
+    .tile-card-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 1.25rem; cursor: pointer; }
+    .tile-card-header h3 { font-family: var(--serif); font-size: 1.1rem; font-weight: 400; color: var(--cream); }
+    .tile-card-header .tile-num { font-family: var(--serif); font-size: 1.5rem; font-weight: 300; color: var(--muted-dark); margin-right: 0.75rem; }
+    .tile-card-body { display: none; padding-top: 1rem; border-top: 1px solid var(--border-d); margin-top: 1rem; }
+    .tile-card.open .tile-card-body { display: block; }
+    .tile-toggle { font-size: 0.75rem; color: var(--muted-light); }
+
+    /* ── TESTIMONIAL EDITOR ── */
+    .testi-card { background: var(--dark2); border: 1px solid var(--border-d); padding: 1.25rem; margin-bottom: 0.75rem; }
+    .testi-card-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.75rem; }
+    .testi-card-header span { font-size: 0.72rem; letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted-dark); }
+    .btn-remove { background: transparent; border: none; color: var(--muted-dark); cursor: pointer; font-size: 0.75rem; transition: color 0.2s; }
+    .btn-remove:hover { color: #ff6b6b; }
+    .btn-add {
+      width: 100%; padding: 0.7rem; background: transparent; border: 1px dashed var(--border-d);
+      color: var(--muted-light); font-family: var(--sans); font-size: 0.8rem;
+      cursor: pointer; transition: border-color 0.2s, color 0.2s; margin-top: 0.5rem;
+    }
+    .btn-add:hover { border-color: var(--teal); color: var(--teal); }
+
+    /* ── STAT EDITOR ── */
+    .stats-row { display: flex; gap: 1rem; }
+    .stats-row .field { flex: 1; }
+    .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+
+    /* ── ABOUT PHOTO RATIO HINT ── */
+    .ratio-badge { display: inline-block; font-size: 0.65rem; background: rgba(0,204,168,0.12); color: var(--teal); padding: 0.2rem 0.5rem; margin-left: 0.5rem; }
+
+    /* ── LOADING OVERLAY ── */
+    #loading { position: fixed; inset: 0; background: rgba(13,13,10,0.9); display: flex; align-items: center; justify-content: center; z-index: 200; }
+    .loading-inner { text-align: center; }
+    .loading-inner p { font-family: var(--serif); font-size: 1.25rem; font-weight: 300; color: var(--cream); margin-bottom: 1rem; }
+    .spinner { width: 32px; height: 32px; border: 2px solid var(--border-d); border-top-color: var(--teal); border-radius: 50%; animation: spin 0.8s linear infinite; margin: 0 auto; }
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    /* ── HERO VIDEO SECTION ── */
+    .video-section { margin-bottom: 2rem; padding: 1.5rem; background: var(--dark2); border: 1px solid var(--border-d); }
+    .video-section p { font-size: 0.8rem; color: var(--muted-light); line-height: 1.7; margin-bottom: 1rem; }
+
+    /* ── PROJECT PAGES ── */
+    .project-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1rem; }
+    .project-card { background: var(--dark2); border: 1px solid var(--border-d); padding: 1.25rem; }
+    .project-card h4 { font-family: var(--serif); font-size: 1rem; font-weight: 400; margin-bottom: 0.5rem; }
+    .project-card .project-num { font-size: 0.7rem; color: var(--teal); letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 0.5rem; }
+    .project-card a.edit-link { font-size: 0.75rem; color: var(--muted-light); display: inline-flex; align-items: center; gap: 0.25rem; margin-top: 0.75rem; }
+    .project-card a.edit-link:hover { color: var(--teal); }
+
+    /* ── REDIRECT INFO ── */
+    .info-box { background: var(--teal-bg); border: 1px solid rgba(0,204,168,0.2); padding: 1.25rem 1.5rem; margin-bottom: 2rem; }
+    .info-box h4 { font-size: 0.8rem; font-weight: 600; color: var(--teal); margin-bottom: 0.5rem; letter-spacing: 0.04em; text-transform: uppercase; }
+    .info-box ol { padding-left: 1.25rem; }
+    .info-box li { font-size: 0.82rem; color: var(--muted-light); margin-bottom: 0.4rem; line-height: 1.6; }
+    .info-box code { background: rgba(0,0,0,0.3); padding: 0.1rem 0.4rem; font-size: 0.8rem; color: var(--teal); }
+  </style>
+</head>
+<body>
+
+<!-- ── LOADING ── -->
+<div id="loading">
+  <div class="loading-inner">
+    <p>Loading editor…</p>
+    <div class="spinner"></div>
+  </div>
+</div>
+
+<!-- ── LOGIN ── -->
+<div id="login-screen" style="display:none;">
+  <div class="login-card">
+    <h1>Churches Editor</h1>
+    <p>Enter your GitHub token to access the editor. Your token is stored only in this browser session and never saved anywhere.</p>
+    <label for="token-input">GitHub Personal Access Token</label>
+    <input type="password" id="token-input" placeholder="ghp_…" autocomplete="off" />
+    <div class="login-error" id="login-error">Invalid token or no repo access. Check and try again.</div>
+    <button class="btn-login" onclick="doLogin()">Enter Editor →</button>
+    <p style="margin-top:1.5rem; font-size:0.72rem; color:var(--muted-dark); line-height:1.7;">
+      Don't have a token? <a href="https://github.com/settings/tokens" target="_blank">Create one here</a> — needs <em>repo</em> scope.
+    </p>
+  </div>
+</div>
+
+<!-- ── APP ── -->
+<div id="app">
+  <header>
+    <div class="header-left">
+      <span class="header-logo">Bárbara Soriano</span>
+      <span class="header-badge">Churches Editor</span>
+    </div>
+    <div class="header-right">
+      <span class="publish-status" id="pub-status">✓ Published</span>
+      <a href="../churches/" target="_blank"><button class="btn-preview">Preview site ↗</button></a>
+      <button class="btn-publish" id="publish-btn" onclick="publishChanges()">Publish changes</button>
+    </div>
+  </header>
+
+  <div class="layout">
+    <nav class="sidebar">
+      <div class="nav-section-label">Page</div>
+      <a href="#" onclick="showPanel('hero')" class="active">Hero</a>
+      <a href="#" onclick="showPanel('services')">Services</a>
+      <a href="#" onclick="showPanel('about')">About</a>
+      <a href="#" onclick="showPanel('testimonials')">Testimonials</a>
+      <a href="#" onclick="showPanel('contact')">Contact</a>
+      <div class="nav-section-label" style="margin-top:1rem;">Projects</div>
+      <a href="#" onclick="showPanel('projects')">Project pages</a>
+      <div class="nav-section-label" style="margin-top:1rem;">Settings</div>
+      <a href="#" onclick="showPanel('domain')">Domain &amp; redirect</a>
+      <a href="#" onclick="logout()" style="color:#ff6b6b; margin-top:1rem;">Sign out</a>
+    </nav>
+
+    <div class="editor-area">
+
+      <!-- HERO -->
+      <div class="section-panel active" id="panel-hero">
+        <h2 class="panel-title">Hero</h2>
+        <p class="panel-sub">The first section visitors see. The video plays in the background when provided.</p>
+
+        <div class="video-section">
+          <p><strong style="color:var(--cream)">Hero video</strong> — Upload a .mp4 video to your repo's <code>churches/</code> folder and enter the filename below. Recommended: landscape, 15–30 sec loop, muted.</p>
+          <div class="field">
+            <label class="field-label">Video filename</label>
+            <input type="text" id="hero-video" placeholder="hero-video.mp4" />
+            <span class="field-hint">File must be in the same churches/ folder on GitHub.</span>
+          </div>
+        </div>
+
+        <div class="field">
+          <label class="field-label">Tag line</label>
+          <input type="text" id="hero-tag" />
+        </div>
+        <div class="field">
+          <label class="field-label">Headline <span style="font-weight:400; text-transform:none; letter-spacing:0">— use &lt;br&gt; for line break, &lt;em&gt; for italic</span></label>
+          <textarea id="hero-h1" class="tall"></textarea>
+        </div>
+        <div class="field">
+          <label class="field-label">Subtext — use &lt;strong&gt; for bold</label>
+          <textarea id="hero-sub" class="tall"></textarea>
+        </div>
+      </div>
+
+      <!-- SERVICES -->
+      <div class="section-panel" id="panel-services">
+        <h2 class="panel-title">Services</h2>
+        <p class="panel-sub">6 tiles. Upload your own project images (recommended ratio 4:3).</p>
+        <div id="services-tiles"></div>
+      </div>
+
+      <!-- ABOUT -->
+      <div class="section-panel" id="panel-about">
+        <h2 class="panel-title">Who I am</h2>
+        <p class="panel-sub">Your photo and bio text.</p>
+
+        <div class="field">
+          <label class="field-label">Your photo <span class="ratio-badge">3:4 ratio recommended</span></label>
+          <div class="img-uploader" id="about-photo-uploader">
+            <div class="img-preview" id="about-photo-preview">
+              <div class="img-empty">No photo yet</div>
+            </div>
+            <div class="img-actions">
+              <label class="file-btn"><input type="file" accept="image/*" onchange="handleImgUpload(this,'about','photo')" /> ↑ Upload photo</label>
+              <input type="text" class="img-url-input" id="about-photo-url" placeholder="Or paste an image URL…" oninput="urlChanged(this,'about','photo')" />
+              <span class="img-progress" id="about-photo-progress">Uploading…</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="field">
+          <label class="field-label">Headline</label>
+          <textarea id="about-h2"></textarea>
+        </div>
+
+        <div class="field">
+          <label class="field-label">Stats</label>
+          <div id="about-stats"></div>
+        </div>
+
+        <div class="field">
+          <label class="field-label">Bio paragraphs</label>
+          <div id="about-paragraphs"></div>
+        </div>
+      </div>
+
+      <!-- TESTIMONIALS -->
+      <div class="section-panel" id="panel-testimonials">
+        <h2 class="panel-title">Testimonials</h2>
+        <p class="panel-sub">Rotating quotes from clients. Replace the placeholder text with real quotes.</p>
+        <div id="testimonials-list"></div>
+        <button class="btn-add" onclick="addTestimonial()">+ Add testimonial</button>
+      </div>
+
+      <!-- CONTACT -->
+      <div class="section-panel" id="panel-contact">
+        <h2 class="panel-title">Contact</h2>
+        <p class="panel-sub">Heading and email shown in the contact section.</p>
+        <div class="field">
+          <label class="field-label">Heading</label>
+          <textarea id="contact-h2"></textarea>
+        </div>
+        <div class="field">
+          <label class="field-label">Intro text</label>
+          <textarea id="contact-intro"></textarea>
+        </div>
+        <div class="two-col">
+          <div class="field">
+            <label class="field-label">Email address</label>
+            <input type="email" id="contact-email" />
+          </div>
+          <div class="field">
+            <label class="field-label">Response time note</label>
+            <input type="text" id="contact-note" />
+          </div>
+        </div>
+      </div>
+
+      <!-- PROJECTS -->
+      <div class="section-panel" id="panel-projects">
+        <h2 class="panel-title">Project pages</h2>
+        <p class="panel-sub">Each service tile links to its own project page. Click a tile below to edit that page's content and add portfolio images.</p>
+        <div class="project-grid" id="projects-grid"></div>
+      </div>
+
+      <!-- DOMAIN -->
+      <div class="section-panel" id="panel-domain">
+        <h2 class="panel-title">Domain &amp; redirect</h2>
+        <p class="panel-sub">How to make <code style="color:var(--teal)">barbarasoriano.com/churches</code> redirect to this site.</p>
+
+        <div class="info-box">
+          <h4>Setup in Squarespace — 2 minutes</h4>
+          <ol>
+            <li>Log in to <strong>Squarespace</strong> → your barbarasoriano.com site</li>
+            <li>Go to <strong>Settings → Advanced → URL Redirects</strong></li>
+            <li>Click <strong>Add URL Redirect</strong></li>
+            <li>From: <code>/churches</code></li>
+            <li>To: <code>https://barbysorianodg-jpg.github.io/churches/</code></li>
+            <li>Type: <strong>302 – Temporary</strong></li>
+            <li>Click <strong>Save</strong></li>
+          </ol>
+        </div>
+
+        <div class="info-box" style="margin-top:1.5rem;">
+          <h4>Your live site URL</h4>
+          <ol>
+            <li>Direct link: <a href="https://barbysorianodg-jpg.github.io/churches/" target="_blank">barbysorianodg-jpg.github.io/churches/</a></li>
+            <li>After redirect: <code>barbarasoriano.com/churches</code> → same page</li>
+            <li>GitHub deploys changes automatically within ~1 minute of publishing.</li>
+          </ol>
+        </div>
+      </div>
+
+    </div><!-- /editor-area -->
+  </div><!-- /layout -->
+</div><!-- /app -->
+
+<script>
+const REPO = 'barbysorianodg-jpg/barbysorianodg-jpg.github.io';
+const CONTENT_PATH = 'content.json';
+const BASE = 'https://api.github.com';
+let TOKEN = '';
+let content = {};
+let contentSha = '';
+
+/* ── INIT ── */
+window.onload = async () => {
+  TOKEN = sessionStorage.getItem('gh_token') || '';
+  if (TOKEN) {
+    const ok = await loadContent();
+    if (ok) { showApp(); return; }
+    else TOKEN = '';
+  }
+  document.getElementById('loading').style.display = 'none';
+  document.getElementById('login-screen').style.display = 'flex';
+};
+
+async function doLogin() {
+  const t = document.getElementById('token-input').value.trim();
+  if (!t) return;
+  TOKEN = t;
+  document.getElementById('loading').style.display = 'flex';
+  const ok = await loadContent();
+  if (ok) {
+    sessionStorage.setItem('gh_token', TOKEN);
+    showApp();
+  } else {
+    TOKEN = '';
+    document.getElementById('loading').style.display = 'none';
+    document.getElementById('login-error').style.display = 'block';
+  }
+}
+
+function logout() {
+  sessionStorage.removeItem('gh_token');
+  location.reload();
+}
+
+function showApp() {
+  document.getElementById('loading').style.display = 'none';
+  document.getElementById('login-screen').style.display = 'none';
+  document.getElementById('app').style.display = 'block';
+  populateAll();
+}
+
+/* ── LOAD CONTENT ── */
+async function loadContent() {
+  try {
+    const res = await fetch(`${BASE}/repos/${REPO}/contents/${CONTENT_PATH}`, {
+      headers: { Authorization: `token ${TOKEN}`, Accept: 'application/vnd.github+json' }
+    });
+    if (!res.ok) return false;
+    const data = await res.json();
+    contentSha = data.sha;
+    content = JSON.parse(atob(data.content.replace(/\n/g,'')));
+    return true;
+  } catch(e) { return false; }
+}
+
+/* ── POPULATE FORMS ── */
+function populateAll() {
+  // Hero
+  v('hero-video', content.hero.video || '');
+  v('hero-tag', content.hero.tag);
+  v('hero-h1', content.hero.h1);
+  v('hero-sub', content.hero.sub);
+
+  // Services tiles
+  const tilesEl = document.getElementById('services-tiles');
+  tilesEl.innerHTML = '';
+  content.services.forEach((svc, i) => {
+    tilesEl.innerHTML += `
+    <div class="tile-card" id="tile-${i}">
+      <div class="tile-card-header" onclick="toggleTile(${i})">
+        <div style="display:flex;align-items:center">
+          <span class="tile-num">${svc.num}</span>
+          <h3 id="tile-title-display-${i}">${svc.title.replace(/&amp;/g,'&')}</h3>
+        </div>
+        <span class="tile-toggle" id="tile-toggle-${i}">▸ Edit</span>
+      </div>
+      <div class="tile-card-body">
+        <div style="margin-bottom:1.25rem">
+          <label class="field-label">Service image <span class="ratio-badge">4:3 ratio</span></label>
+          <div class="img-uploader">
+            <div class="img-preview" id="svc-img-preview-${i}">
+              ${svc.image ? `<img src="${svc.image}" />` : '<div class="img-empty">No image yet</div>'}
+            </div>
+            <div class="img-actions">
+              <label class="file-btn"><input type="file" accept="image/*" onchange="handleImgUpload(this,'service',${i})" /> ↑ Upload image</label>
+              <input type="text" class="img-url-input" id="svc-img-url-${i}" value="${svc.image||''}" placeholder="Or paste an image URL…" oninput="urlChanged(this,'service',${i})" />
+              <span class="img-progress" id="svc-img-progress-${i}">Uploading…</span>
+            </div>
+          </div>
+        </div>
+        <div class="field">
+          <label class="field-label">Title</label>
+          <input type="text" id="svc-title-${i}" value="${svc.title.replace(/"/g,'&quot;')}" oninput="document.getElementById('tile-title-display-${i}').textContent=this.value.replace(/&amp;/g,'&')" />
+        </div>
+        <div class="field">
+          <label class="field-label">Description</label>
+          <textarea id="svc-desc-${i}">${svc.description}</textarea>
+        </div>
+      </div>
+    </div>`;
+  });
+
+  // About
+  setImgPreview('about-photo-preview', content.about.photo);
+  v('about-photo-url', content.about.photo || '');
+  v('about-h2', content.about.h2);
+  const statsEl = document.getElementById('about-stats');
+  statsEl.innerHTML = '<div class="stats-row">' + content.about.stats.map((s,i)=>`
+    <div class="field">
+      <div class="two-col">
+        <div><label class="field-label">Number</label><input type="text" id="stat-num-${i}" value="${s.num}" /></div>
+        <div><label class="field-label">Label</label><input type="text" id="stat-label-${i}" value="${s.label}" /></div>
+      </div>
+    </div>`).join('') + '</div>';
+  const parasEl = document.getElementById('about-paragraphs');
+  parasEl.innerHTML = content.about.paragraphs.map((p,i)=>`
+    <div class="field"><label class="field-label">Paragraph ${i+1}</label>
+    <textarea class="tall" id="about-para-${i}">${p}</textarea></div>`).join('');
+
+  // Testimonials
+  renderTestimonials();
+
+  // Contact
+  v('contact-h2', content.contact.h2);
+  v('contact-intro', content.contact.intro);
+  v('contact-email', content.contact.email);
+  v('contact-note', content.contact.responseTime);
+
+  // Projects
+  const pg = document.getElementById('projects-grid');
+  pg.innerHTML = content.services.map((svc,i) => `
+    <div class="project-card">
+      <div class="project-num">Project ${svc.num}</div>
+      <h4>${svc.title.replace(/&amp;/g,'&')}</h4>
+      <a class="edit-link" href="project-${svc.num}/admin.html">Edit project page →</a>
+    </div>`).join('');
+}
+
+function renderTestimonials() {
+  const el = document.getElementById('testimonials-list');
+  el.innerHTML = content.testimonials.map((t,i) => `
+    <div class="testi-card">
+      <div class="testi-card-header">
+        <span>Testimonial ${i+1}</span>
+        <button class="btn-remove" onclick="removeTestimonial(${i})">✕ Remove</button>
+      </div>
+      <div class="field"><label class="field-label">Quote</label>
+        <textarea id="testi-quote-${i}" class="tall">${t.quote}</textarea></div>
+      <div class="field"><label class="field-label">Attribution</label>
+        <input type="text" id="testi-attr-${i}" value="${t.attr.replace(/"/g,'&quot;')}" /></div>
+    </div>`).join('');
+}
+
+/* ── HELPERS ── */
+function v(id, val) {
+  const el = document.getElementById(id);
+  if (!el) return;
+  el.tagName === 'TEXTAREA' ? el.value = val : el.value = val;
+}
+function g(id) { const el = document.getElementById(id); return el ? el.value : ''; }
+
+function toggleTile(i) {
+  const card = document.getElementById(`tile-${i}`);
+  const tog = document.getElementById(`tile-toggle-${i}`);
+  card.classList.toggle('open');
+  tog.textContent = card.classList.contains('open') ? '▾ Close' : '▸ Edit';
+}
+
+function showPanel(name) {
+  document.querySelectorAll('.section-panel').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('nav.sidebar a').forEach(a => a.classList.remove('active'));
+  document.getElementById('panel-' + name).classList.add('active');
+  event.currentTarget.classList.add('active');
+}
+
+function setImgPreview(previewId, url) {
+  const el = document.getElementById(previewId);
+  if (!el) return;
+  if (url) el.innerHTML = `<img src="${url}" />`;
+  else el.innerHTML = '<div class="img-empty">No photo yet</div>';
+}
+
+/* ── IMAGE UPLOAD ── */
+async function handleImgUpload(input, type, idx) {
+  const file = input.files[0]; if (!file) return;
+  const progressId = type === 'about' ? 'about-photo-progress' : `svc-img-progress-${idx}`;
+  const previewId  = type === 'about' ? 'about-photo-preview'  : `svc-img-preview-${idx}`;
+  const urlId      = type === 'about' ? 'about-photo-url'      : `svc-img-url-${idx}`;
+  document.getElementById(progressId).style.display = 'block';
+  document.getElementById(progressId).textContent = 'Uploading…';
+
+  const reader = new FileReader();
+  reader.onload = async (e) => {
+    const b64 = e.target.result.split(',')[1];
+    const filename = `images/${Date.now()}-${file.name.replace(/\s/g,'-')}`;
+    const res = await fetch(`${BASE}/repos/${REPO}/contents/${filename}`, {
+      method: 'PUT',
+      headers: { Authorization: `token ${TOKEN}`, 'Content-Type': 'application/json' },
+      body: JSON.stringify({ message: `Upload image ${file.name}`, content: b64 })
+    });
+    const data = await res.json();
+    if (data.content) {
+      const rawUrl = data.content.download_url;
+      document.getElementById(urlId).value = rawUrl;
+      setImgPreview(previewId, rawUrl);
+      document.getElementById(progressId).textContent = '✓ Uploaded';
+      // update content object
+      if (type === 'about') content.about.photo = rawUrl;
+      else content.services[idx].image = rawUrl;
+    } else {
+      document.getElementById(progressId).textContent = 'Error uploading. Try a URL instead.';
+    }
+  };
+  reader.readAsDataURL(file);
+}
+
+function urlChanged(input, type, idx) {
+  const url = input.value.trim();
+  const previewId = type === 'about' ? 'about-photo-preview' : `svc-img-preview-${idx}`;
+  setImgPreview(previewId, url);
+}
+
+/* ── TESTIMONIALS ── */
+function addTestimonial() {
+  content.testimonials.push({ quote: '"…"', attr: '— Name · Organization' });
+  renderTestimonials();
+}
+function removeTestimonial(i) {
+  content.testimonials.splice(i, 1);
+  renderTestimonials();
+}
+
+/* ── COLLECT + PUBLISH ── */
+function collectContent() {
+  content.hero.video = g('hero-video');
+  content.hero.tag   = g('hero-tag');
+  content.hero.h1    = g('hero-h1');
+  content.hero.sub   = g('hero-sub');
+
+  content.services.forEach((svc, i) => {
+    svc.title       = g(`svc-title-${i}`);
+    svc.description = g(`svc-desc-${i}`);
+    const url = g(`svc-img-url-${i}`);
+    if (url) svc.image = url;
+  });
+
+  content.about.h2 = g('about-h2');
+  content.about.photo = g('about-photo-url');
+  content.about.stats = content.about.stats.map((s,i) => ({
+    num: g(`stat-num-${i}`), label: g(`stat-label-${i}`)
+  }));
+  content.about.paragraphs = content.about.paragraphs.map((_,i) => g(`about-para-${i}`));
+
+  content.testimonials = content.testimonials.map((_,i) => ({
+    quote: g(`testi-quote-${i}`),
+    attr:  g(`testi-attr-${i}`)
+  }));
+
+  content.contact.h2           = g('contact-h2');
+  content.contact.intro        = g('contact-intro');
+  content.contact.email        = g('contact-email');
+  content.contact.responseTime = g('contact-note');
+}
+
+async function publishChanges() {
+  collectContent();
+  const btn = document.getElementById('publish-btn');
+  const status = document.getElementById('pub-status');
+  btn.disabled = true;
+  btn.textContent = 'Publishing…';
+
+  const jsonStr = JSON.stringify(content, null, 2);
+  const b64 = btoa(unescape(encodeURIComponent(jsonStr)));
+
+  const res = await fetch(`${BASE}/repos/${REPO}/contents/${CONTENT_PATH}`, {
+    method: 'PUT',
+    headers: { Authorization: `token ${TOKEN}`, 'Content-Type': 'application/json' },
+    body: JSON.stringify({ message: 'Update churches content', content: b64, sha: contentSha })
+  });
+  const data = await res.json();
+  if (data.content) {
+    contentSha = data.content.sha;
+    btn.textContent = 'Publish changes';
+    btn.disabled = false;
+    status.textContent = '✓ Published — live in ~1 min';
+    status.classList.add('visible');
+    setTimeout(() => status.classList.remove('visible'), 4000);
+  } else {
+    btn.textContent = 'Publish changes';
+    btn.disabled = false;
+    alert('Error publishing: ' + (data.message || 'unknown error'));
+  }
+}
+</script>
+</body>
+</html>
