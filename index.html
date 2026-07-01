@@ -197,7 +197,6 @@
       font-size: 0.875rem; line-height: 1.7;
       color: var(--muted-dark);
     }
-    /* all tiles equal width in 3-col grid */
 
     /* ── WHO I AM — dark ─────────────────────────────────── */
     #about {
@@ -403,8 +402,7 @@
       display: flex; align-items: center; justify-content: space-between;
     }
     footer p { font-size: 0.78rem; color: var(--muted-light); }
-    footer a { color: var(--muted-light); transition: color 0.2s;
-    }
+    footer a { color: var(--muted-light); transition: color 0.2s; }
     footer a:hover { color: var(--text-light); }
 
     /* ── RESPONSIVE ──────────────────────────────────────── */
@@ -426,7 +424,28 @@
 <body>
 
 <!-- ── NAV ──────────────────────────────────────────────────── -->
-<nanizations</span>
+<nav>
+  <a href="/" class="nav-logo">
+    <span class="nav-logo-b">B</span>
+    <span class="nav-logo-name">Soriano</span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="/#work">Work</a></li>
+    <li><a href="/#services">Services</a></li>
+    <li><a href="/#about">About</a></li>
+    <li><a href="#contact" class="active">Churches</a></li>
+  </ul>
+</nav>
+
+<!-- ── HERO ─────────────────────────────────────────────────── -->
+<section id="hero">
+  <!-- VIDEO DE FONDO: reemplazá "tu-video.mp4" con el nombre de tu archivo.
+       El video debe estar en la misma carpeta. Se reproduce en loop, sin sonido. -->
+  <video id="hero-video" autoplay muted loop playsinline>
+    <source src="hero-video.mp4" type="video/mp4" />
+  </video>
+  <div class="container">
+    <span class="hero-tag reveal">For Churches &amp; Faith Organizations</span>
     <h1 class="hero-h1 reveal reveal-delay-1">
       Design that speaks<br><em>your language.</em>
     </h1>
@@ -457,7 +476,6 @@
       <div class="stile reveal">
         <span class="stile-num">01</span>
         <div class="stile-img">
-          <!-- REPLACE: Monte Calvario logo / brand board -->
           <span class="ph">Brand Identity<br>Monte Calvario logo &amp; system</span>
         </div>
         <h3>Brand Identity &amp; Visual Systems</h3>
@@ -468,7 +486,6 @@
       <div class="stile reveal reveal-delay-1">
         <span class="stile-num">02</span>
         <div class="stile-img">
-          <!-- REPLACE: Trinity Prayer Guide or Antioch Vision Sunday -->
           <span class="ph">Print &amp; Editorial<br>Trinity 21 Day Prayer Guide</span>
         </div>
         <h3>Print &amp; Editorial Layout</h3>
@@ -479,7 +496,6 @@
       <div class="stile reveal reveal-delay-2">
         <span class="stile-num">03</span>
         <div class="stile-img">
-          <!-- REPLACE: CoastLife Freedom Book or Nikao social suite -->
           <span class="ph">Series Graphics<br>CoastLife Freedom / Nikao Christmas</span>
         </div>
         <h3>Sermon Series Graphics</h3>
@@ -490,7 +506,6 @@
       <div class="stile reveal reveal-delay-3">
         <span class="stile-num">04</span>
         <div class="stile-img">
-          <!-- REPLACE: Event flyer / poster from CMS work -->
           <span class="ph">Event Brand Identity<br>Event posters &amp; flyers</span>
         </div>
         <h3>Event Brand Identity</h3>
@@ -501,7 +516,6 @@
       <div class="stile reveal reveal-delay-4">
         <span class="stile-num">05</span>
         <div class="stile-img">
-          <!-- REPLACE: e625 book covers or Bible spreads -->
           <span class="ph">Book &amp; Bible Design<br>e625 catalog</span>
         </div>
         <h3>Book &amp; Bible Design</h3>
@@ -512,7 +526,6 @@
       <div class="stile reveal reveal-delay-5">
         <span class="stile-num">06</span>
         <div class="stile-img">
-          <!-- REPLACE: Monte Calvario website mockup / phone screens -->
           <span class="ph">Web &amp; Digital — Monte Calvario website mockup</span>
         </div>
         <h3>Web &amp; Digital</h3>
@@ -531,7 +544,6 @@
 
       <div>
         <div class="about-photo reveal">
-          <!-- REPLACE: your photo here, 3:4 ratio -->
           <span class="ph" style="color:rgba(237,232,223,0.35)">Your photo<br><span style="opacity:0.6; font-size:0.65rem">3 : 4 ratio recommended</span></span>
         </div>
         <div class="about-stats reveal reveal-delay-1">
@@ -831,23 +843,4 @@
 </script>
 
 </body>
-</html>  <a href="/" class="nav-logo">
-    <img src="bs-logo.png" alt="Bárbara Soriano" style="height:2.25rem; width:auto;" />
-  </a>
-  <ul class="nav-links">
-    <li><a href="/#work">Work</a></li>
-    <li><a href="/#services">Services</a></li>
-    <li><a href="/#about">About</a></li>
-    <li><a href="#contact" class="active">Churches</a></li>
-  </ul>
-</nav>
-
-<!-- ── HERO ─────────────────────────────────────────────────── -->
-<section id="hero">
-  <!-- VIDEO DE FONDO: reemplazá "tu-video.mp4" con el nombre de tu archivo.
-       El video debe estar en la misma carpeta Profile. Se reproduce en loop, sin sonido. -->
-  <video id="hero-video" autoplay muted loop playsinline>
-    <source src="hero-video.mp4" type="video/mp4" />
-  </video>
-  <div class="container">
-    <span class="hero-tag reveal">For Churches &amp; Faith Org
+</html>
