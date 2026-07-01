@@ -403,7 +403,8 @@
       display: flex; align-items: center; justify-content: space-between;
     }
     footer p { font-size: 0.78rem; color: var(--muted-light); }
-    footer a { color: var(--muted-light); transition: color 0.2s; }
+    footer a { color: var(--muted-light); transition: color 0.2s;
+    }
     footer a:hover { color: var(--text-light); }
 
     /* ── RESPONSIVE ──────────────────────────────────────── */
@@ -425,27 +426,7 @@
 <body>
 
 <!-- ── NAV ──────────────────────────────────────────────────── -->
-<nav>
-  <a href="/" class="nav-logo">
-    <img src="bs-logo.png" alt="Bárbara Soriano" style="height:2.25rem; width:auto;" />
-  </a>
-  <ul class="nav-links">
-    <li><a href="/#work">Work</a></li>
-    <li><a href="/#services">Services</a></li>
-    <li><a href="/#about">About</a></li>
-    <li><a href="#contact" class="active">Churches</a></li>
-  </ul>
-</nav>
-
-<!-- ── HERO ─────────────────────────────────────────────────── -->
-<section id="hero">
-  <!-- VIDEO DE FONDO: reemplazá "tu-video.mp4" con el nombre de tu archivo.
-       El video debe estar en la misma carpeta Profile. Se reproduce en loop, sin sonido. -->
-  <video id="hero-video" autoplay muted loop playsinline>
-    <source src="hero-video.mp4" type="video/mp4" />
-  </video>
-  <div class="container">
-    <span class="hero-tag reveal">For Churches &amp; Faith Organizations</span>
+<nanizations</span>
     <h1 class="hero-h1 reveal reveal-delay-1">
       Design that speaks<br><em>your language.</em>
     </h1>
@@ -742,61 +723,131 @@
 
 <!-- ── SCRIPTS ────────────────────────────────────────────────── -->
 <script>
-  // Hero video — show only when it can play
+  // ── Hero video ──
   const heroVid = document.getElementById('hero-video');
-  if (heroVid) {
-    heroVid.addEventListener('canplay', () => heroVid.style.display = 'block');
-  }
+  if (heroVid) heroVid.addEventListener('canplay', () => heroVid.style.display = 'block');
 
-  // Scroll reveal
+  // ── Scroll reveal ──
   const reveals = document.querySelectorAll('.reveal');
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(e => {
-      if (e.isIntersecting) {
-        e.target.classList.add('visible');
-        observer.unobserve(e.target);
-      }
+      if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); }
     });
   }, { threshold: 0.12 });
   reveals.forEach(el => observer.observe(el));
 
-  // Testimonial slider
-  const slides = document.getElementById('tSlides');
-  const dotsContainer = document.getElementById('tDots');
-  const total = document.querySelectorAll('.testimonial-slide').length;
-  let current = 0;
-  let autoTimer;
-
-  // Build dots
-  for (let i = 0; i < total; i++) {
-    const d = document.createElement('div');
-    d.className = 't-dot' + (i === 0 ? ' active' : '');
-    d.addEventListener('click', () => goTo(i));
-    dotsContainer.appendChild(d);
-  }
-
-  function goTo(n) {
-    current = (n + total) % total;
-    slides.style.transform = `translateX(-${current * 100}%)`;
-    document.querySelectorAll('.t-dot').forEach((d, i) => {
-      d.classList.toggle('active', i === current);
-    });
+  // ── Testimonial slider ──
+  let _autoTimer;
+  function initSlider() {
+    const slidesEl = document.getElementById('tSlides');
+    const dotsContainer = document.getElementById('tDots');
+    const total = document.querySelectorAll('.testimonial-slide').length;
+    let current = 0;
+    clearInterval(_autoTimer);
+    if (dotsContainer) {
+      dotsContainer.innerHTML = '';
+      for (let i = 0; i < total; i++) {
+        const d = document.createElement('div');
+        d.className = 't-dot' + (i === 0 ? ' active' : '');
+        d.addEventListener('click', () => goTo(i));
+        dotsContainer.appendChild(d);
+      }
+    }
+    function goTo(n) {
+      current = (n + total) % total;
+      if (slidesEl) slidesEl.style.transform = `translateX(-${current * 100}%)`;
+      document.querySelectorAll('.t-dot').forEach((d, i) => d.classList.toggle('active', i === current));
+      resetAuto();
+    }
+    function resetAuto() {
+      clearInterval(_autoTimer);
+      _autoTimer = setInterval(() => goTo(current + 1), 5000);
+    }
+    const prevBtn = document.getElementById('tPrev');
+    const nextBtn = document.getElementById('tNext');
+    if (prevBtn) { prevBtn.onclick = null; prevBtn.onclick = () => goTo(current - 1); }
+    if (nextBtn) { nextBtn.onclick = null; nextBtn.onclick = () => goTo(current + 1); }
     resetAuto();
+    const sec = document.getElementById('testimonials');
+    if (sec) { sec.onmouseenter = () => clearInterval(_autoTimer); sec.onmouseleave = resetAuto; }
   }
+  initSlider();
 
-  function resetAuto() {
-    clearInterval(autoTimer);
-    autoTimer = setInterval(() => goTo(current + 1), 5000);
-  }
+  // ── Content loader from content.json ──
+  fetch('content.json').then(r => r.json()).then(c => {
+    // Hero
+    const heroTag = document.querySelector('.hero-tag');
+    const heroH1  = document.querySelector('.hero-h1');
+    const heroSub = document.querySelector('.hero-sub');
+    const heroVidSrc = document.querySelector('#hero-video source');
+    if (heroTag) heroTag.textContent = c.hero.tag;
+    if (heroH1)  heroH1.innerHTML = c.hero.h1;
+    if (heroSub) heroSub.innerHTML = c.hero.sub;
+    if (heroVidSrc && c.hero.video) { heroVidSrc.src = c.hero.video; const v = document.getElementById('hero-video'); if(v) v.load(); }
 
-  document.getElementById('tPrev').addEventListener('click', () => goTo(current - 1));
-  document.getElementById('tNext').addEventListener('click', () => goTo(current + 1));
-  resetAuto();
+    // Services
+    document.querySelectorAll('.stile').forEach((tile, i) => {
+      const svc = c.services[i]; if (!svc) return;
+      const imgEl = tile.querySelector('.stile-img');
+      const h3El  = tile.querySelector('h3');
+      const pEl   = tile.querySelector('p');
+      if (imgEl && svc.image) imgEl.innerHTML = '<img src="' + svc.image + '" alt="' + (svc.imageAlt||'') + '" style="width:100%;height:100%;object-fit:cover;display:block;" />';
+      if (h3El) h3El.innerHTML = svc.title;
+      if (pEl)  pEl.innerHTML  = svc.description;
+    });
 
-  // Pause on hover
-  document.getElementById('testimonials').addEventListener('mouseenter', () => clearInterval(autoTimer));
-  document.getElementById('testimonials').addEventListener('mouseleave', resetAuto);
+    // About
+    const aboutPhoto = document.querySelector('.about-photo');
+    if (aboutPhoto && c.about.photo) aboutPhoto.innerHTML = '<img src="' + c.about.photo + '" alt="' + (c.about.photoAlt||'') + '" style="width:100%;height:100%;object-fit:cover;display:block;" />';
+    const aboutH2 = document.querySelector('.about-body h2');
+    if (aboutH2) aboutH2.innerHTML = c.about.h2;
+    const aboutParas = document.querySelectorAll('.about-body p');
+    c.about.paragraphs.forEach((p, i) => { if (aboutParas[i]) aboutParas[i].innerHTML = p; });
+    const statNums   = document.querySelectorAll('.stat-num');
+    const statLabels = document.querySelectorAll('.stat-label');
+    c.about.stats.forEach((s, i) => {
+      if (statNums[i])   statNums[i].textContent   = s.num;
+      if (statLabels[i]) statLabels[i].textContent = s.label;
+    });
+
+    // Testimonials
+    const tSlides = document.getElementById('tSlides');
+    if (tSlides && c.testimonials && c.testimonials.length) {
+      tSlides.innerHTML = c.testimonials.map(t =>
+        '<div class="testimonial-slide"><p class="t-quote">' + t.quote + '</p><p class="t-attr">' + t.attr + '</p></div>'
+      ).join('');
+      initSlider();
+    }
+
+    // Contact
+    const contactH2    = document.querySelector('.contact-left h2');
+    const contactIntro = document.querySelector('.contact-left > p');
+    const contactEmail = document.querySelector('.contact-left .c-note a');
+    if (contactH2)    contactH2.innerHTML    = c.contact.h2;
+    if (contactIntro) contactIntro.innerHTML = c.contact.intro;
+    if (contactEmail) { contactEmail.textContent = c.contact.email; contactEmail.href = 'mailto:' + c.contact.email; }
+
+  }).catch(() => {}); // silent — hardcoded content remains if no content.json
 </script>
 
 </body>
-</html>
+</html>  <a href="/" class="nav-logo">
+    <img src="bs-logo.png" alt="Bárbara Soriano" style="height:2.25rem; width:auto;" />
+  </a>
+  <ul class="nav-links">
+    <li><a href="/#work">Work</a></li>
+    <li><a href="/#services">Services</a></li>
+    <li><a href="/#about">About</a></li>
+    <li><a href="#contact" class="active">Churches</a></li>
+  </ul>
+</nav>
+
+<!-- ── HERO ─────────────────────────────────────────────────── -->
+<section id="hero">
+  <!-- VIDEO DE FONDO: reemplazá "tu-video.mp4" con el nombre de tu archivo.
+       El video debe estar en la misma carpeta Profile. Se reproduce en loop, sin sonido. -->
+  <video id="hero-video" autoplay muted loop playsinline>
+    <source src="hero-video.mp4" type="video/mp4" />
+  </video>
+  <div class="container">
+    <span class="hero-tag reveal">For Churches &amp; Faith Org
