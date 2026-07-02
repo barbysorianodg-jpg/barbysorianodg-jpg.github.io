@@ -8,7 +8,7 @@
   "services": [
     {
       "num": "01",
-      "image": "brand-01.jpg",
+      "image": "brand-02.jpg",
       "imageAlt": "Brand Identity",
       "title": "Brand Identity &amp; Visual Systems",
       "description": "Logo, color palette, typography, and brand guidelines — everything your team needs to communicate consistently across every platform."
@@ -37,7 +37,7 @@
     },
     {
       "num": "05",
-      "image": "Event-Brand-Identity.jpg",
+      "image": "Event-Brand-Identity-02.jpg",
       "imageAlt": "Event Brand Identity",
       "title": "Event Brand Identity",
       "description": "Visual identity for conferences, retreats, camps, and special services — a cohesive look that extends across print, digital, and on-site signage."
