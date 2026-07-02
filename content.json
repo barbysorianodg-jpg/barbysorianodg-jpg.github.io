@@ -50,7 +50,7 @@
     }
   ],
   "about": {
-    "photo": "",
+    "photo": "foto-barby.png",
     "photoAlt": "Bárbara Soriano",
     "stats": [
       { "num": "50+", "label": "US churches" },
