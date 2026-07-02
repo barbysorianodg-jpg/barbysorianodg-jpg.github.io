@@ -8,42 +8,42 @@
   "services": [
     {
       "num": "01",
-      "image": "",
+      "image": "brand-01.jpg",
       "imageAlt": "Brand Identity",
       "title": "Brand Identity &amp; Visual Systems",
       "description": "Logo, color palette, typography, and brand guidelines — everything your team needs to communicate consistently across every platform."
     },
     {
       "num": "02",
-      "image": "",
+      "image": "76444_01.jpg",
       "imageAlt": "Print & Editorial",
       "title": "Print &amp; Editorial Layout",
       "description": "Booklets, prayer guides, handbooks, study materials, and curriculum — designed to be read, kept, and passed on."
     },
     {
       "num": "03",
-      "image": "",
+      "image": "Sermon Series Graphics.jpg",
       "imageAlt": "Sermon Series Graphics",
       "title": "Sermon Series Graphics",
       "description": "Series branding, social media packages, screen slides, and promotional assets — built for your cadence, consistent across every touchpoint."
     },
     {
       "num": "04",
-      "image": "",
+      "image": "Event Brand Identity.jpg",
       "imageAlt": "Event Brand Identity",
       "title": "Event Brand Identity",
       "description": "Visual identity for conferences, retreats, camps, and special services — a cohesive look that extends across print, digital, and on-site signage."
     },
     {
       "num": "05",
-      "image": "",
+      "image": "Libros.jpg",
       "imageAlt": "Book & Bible Design",
       "title": "Book &amp; Bible Design",
       "description": "Editorial design for Christian publishers — devotionals, study Bibles, curricula, and resources built to hold up across print runs and formats."
     },
     {
       "num": "06",
-      "image": "",
+      "image": "web.jpg",
       "imageAlt": "Web & Digital",
       "title": "Web &amp; Digital",
       "description": "Website layouts, app screen design, and digital assets — visual systems that translate from print to screen without losing integrity."
