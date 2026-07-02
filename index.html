@@ -56,15 +56,8 @@
     .nav-logo {
       display: flex; align-items: center; gap: 0.6rem;
     }
-    .nav-logo-b {
-      font-family: var(--serif); font-size: 2rem; font-weight: 600;
-      color: var(--teal); letter-spacing: -0.02em; line-height: 1;
-      font-style: italic;
-    }
-    .nav-logo-name {
-      font-family: var(--sans); font-size: 0.7rem; font-weight: 500;
-      letter-spacing: 0.2em; text-transform: uppercase;
-      color: var(--text-light);
+    .nav-logo img {
+      height: 2.25rem; width: auto; display: block;
     }
     .nav-links { display: flex; gap: 2.25rem; list-style: none; }
     .nav-links a {
@@ -106,7 +99,7 @@
     #hero-video {
       position: absolute; inset: 0; width: 100%; height: 100%;
       object-fit: cover; opacity: 0.35; pointer-events: none;
-      display: none; /* shown via JS once src is set */
+      display: none;
     }
     #hero .container { position: relative; z-index: 1; }
     .hero-tag {
@@ -426,8 +419,7 @@
 <!-- ── NAV ──────────────────────────────────────────────────── -->
 <nav>
   <a href="/" class="nav-logo">
-    <span class="nav-logo-b">B</span>
-    <span class="nav-logo-name">Soriano</span>
+    <img src="bs-logo.png" alt="Bárbara Soriano" />
   </a>
   <ul class="nav-links">
     <li><a href="/#work">Work</a></li>
@@ -439,8 +431,6 @@
 
 <!-- ── HERO ─────────────────────────────────────────────────── -->
 <section id="hero">
-  <!-- VIDEO DE FONDO: reemplazá "tu-video.mp4" con el nombre de tu archivo.
-       El video debe estar en la misma carpeta. Se reproduce en loop, sin sonido. -->
   <video id="hero-video" autoplay muted loop playsinline>
     <source src="hero-video.mp4" type="video/mp4" />
   </video>
@@ -456,8 +446,8 @@
       what it takes to communicate it well.
     </p>
     <div class="hero-ctas reveal reveal-delay-3">
-      <a href="#services" class="btn">See what I do →︎</a>
-      <a href="#contact" class="btn btn-ghost">Let's talk →︎</a>
+      <a href="#services" class="btn">See what I do &#8594;&#65038;</a>
+      <a href="#contact" class="btn btn-ghost">Let's talk &#8594;&#65038;</a>
     </div>
   </div>
 </section>
@@ -587,7 +577,7 @@
           guide. That's not something you have to explain to me.
         </p>
         <a href="#contact" class="about-cta reveal reveal-delay-5">
-          Start a conversation →︎
+          Start a conversation &#8594;&#65038;
         </a>
       </div>
 
@@ -664,9 +654,9 @@
     </div>
 
     <div class="t-controls">
-      <button class="t-btn" id="tPrev" aria-label="Previous">←</button>
+      <button class="t-btn" id="tPrev" aria-label="Previous">&#8592;</button>
       <div class="t-dots" id="tDots"></div>
-      <button class="t-btn" id="tNext" aria-label="Next">→</button>
+      <button class="t-btn" id="tNext" aria-label="Next">&#8594;</button>
     </div>
   </div>
 </section>
@@ -715,7 +705,7 @@
             <label>Message <span>(required)</span></label>
             <textarea placeholder="Tell me a bit about your project." required></textarea>
           </div>
-          <button type="submit" class="form-submit">Submit →︎</button>
+          <button type="submit" class="form-submit">Submit &#8594;&#65038;</button>
         </form>
       </div>
 
@@ -725,7 +715,7 @@
 
 <!-- ── FOOTER ─────────────────────────────────────────────────── -->
 <footer>
-  <p>© 2026 Bárbara Soriano · <a href="/">barbarasoriano.com</a></p>
+  <p>&#169; 2026 Bárbara Soriano · <a href="/">barbarasoriano.com</a></p>
   <p>
     <a href="/#work">Work</a> &nbsp;·&nbsp;
     <a href="/#about">About</a> &nbsp;·&nbsp;
@@ -839,7 +829,7 @@
     if (contactIntro) contactIntro.innerHTML = c.contact.intro;
     if (contactEmail) { contactEmail.textContent = c.contact.email; contactEmail.href = 'mailto:' + c.contact.email; }
 
-  }).catch(() => {}); // silent — hardcoded content remains if no content.json
+  }).catch(() => {});
 </script>
 
 </body>
