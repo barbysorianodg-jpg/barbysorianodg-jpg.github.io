@@ -29,17 +29,18 @@
     },
     {
       "num": "04",
-      "image": "Event Brand Identity.jpg",
-      "imageAlt": "Event Brand Identity",
-      "title": "Event Brand Identity",
-      "description": "Visual identity for conferences, retreats, camps, and special services — a cohesive look that extends across print, digital, and on-site signage."
-    },
-    {
-      "num": "05",
       "image": "Libros.jpg",
       "imageAlt": "Book & Bible Design",
       "title": "Book &amp; Bible Design",
       "description": "Editorial design for Christian publishers — devotionals, study Bibles, curricula, and resources built to hold up across print runs and formats."
+   
+    },
+    {
+      "num": "05",
+      "image": "Event-Brand-Identity.jpg",
+      "imageAlt": "Event Brand Identity",
+      "title": "Event Brand Identity",
+      "description": "Visual identity for conferences, retreats, camps, and special services — a cohesive look that extends across print, digital, and on-site signage."
     },
     {
       "num": "06",
