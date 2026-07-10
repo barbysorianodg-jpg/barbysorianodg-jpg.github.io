@@ -175,9 +175,10 @@
     }
 
     .stile {
+      display: block;
       background: var(--cream); padding: 2.25rem 1.875rem 2.5rem;
       transition: background 0.22s;
-      cursor: default;
+      cursor: pointer;
     }
     .stile:hover { background: var(--cream2); }
 
@@ -193,7 +194,8 @@
       display: flex; align-items: center; justify-content: center;
       overflow: hidden; margin-bottom: 1.375rem;
     }
-    .stile-img img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .stile-img img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.45s ease; }
+    .stile-img:hover img { transform: scale(1.08); }
     .stile-img .ph {
       font-size: 0.7rem; color: var(--muted-dark);
       text-align: center; padding: 1rem; line-height: 1.7;
@@ -492,64 +494,64 @@
     <div class="services-grid">
 
       <!-- 01 Brand Identity -->
-      <div class="stile reveal">
+      <a href="service-brand-identity.html" class="stile reveal">
         <span class="stile-num">01</span>
         <div class="stile-img">
           <span class="ph">Brand Identity<br>Monte Calvario logo &amp; system</span>
         </div>
         <h3>Brand Identity &amp; Visual Systems</h3>
         <p>Logo, color palette, typography, and brand guidelines — everything your team needs to communicate consistently across every platform.</p>
-      </div>
+      </a>
 
       <!-- 02 Print & Editorial -->
-      <div class="stile reveal reveal-delay-1">
+      <a href="service-print-editorial.html" class="stile reveal reveal-delay-1">
         <span class="stile-num">02</span>
         <div class="stile-img">
           <span class="ph">Print &amp; Editorial<br>Trinity 21 Day Prayer Guide</span>
         </div>
         <h3>Print &amp; Editorial Layout</h3>
         <p>Booklets, prayer guides, handbooks, study materials, and curriculum — designed to be read, kept, and passed on.</p>
-      </div>
+      </a>
 
       <!-- 03 Sermon Series Graphics -->
-      <div class="stile reveal reveal-delay-2">
+      <a href="service-sermon-series.html" class="stile reveal reveal-delay-2">
         <span class="stile-num">03</span>
         <div class="stile-img">
           <span class="ph">Series Graphics<br>CoastLife Freedom / Nikao Christmas</span>
         </div>
         <h3>Sermon Series Graphics</h3>
         <p>Series branding, social media packages, screen slides, and promotional assets — built for your cadence, consistent across every touchpoint.</p>
-      </div>
+      </a>
 
       <!-- 04 Event Brand Identity -->
-      <div class="stile reveal">
+      <a href="service-event-brand.html" class="stile reveal">
         <span class="stile-num">04</span>
         <div class="stile-img">
           <span class="ph">Event Brand Identity<br>Event posters &amp; flyers</span>
         </div>
         <h3>Event Brand Identity</h3>
         <p>Visual identity for conferences, retreats, camps, and special services — a cohesive look that extends across print, digital, and on-site signage.</p>
-      </div>
+      </a>
 
       <!-- 05 Book & Bible Design -->
-      <div class="stile reveal reveal-delay-1">
+      <a href="service-book-bible.html" class="stile reveal reveal-delay-1">
         <span class="stile-num">05</span>
         <div class="stile-img">
           <span class="ph">Book &amp; Bible Design<br>e625 catalog</span>
         </div>
         <h3>Book &amp; Bible Design</h3>
         <p>Editorial design for Christian publishers — devotionals, study Bibles, curricula, and resources built to hold up across print runs and formats.</p>
-      </div>
+      </a>
 
       <!-- 06 Web & Digital -->
-      <div class="stile reveal reveal-delay-2">
+      <a href="service-web-digital.html" class="stile reveal reveal-delay-2">
         <span class="stile-num">06</span>
         <div class="stile-img">
           <span class="ph">Web &amp; Digital — Monte Calvario website mockup</span>
         </div>
         <h3>Web &amp; Digital</h3>
         <p>Website layouts, app screen design, and digital assets — visual systems that translate from print to screen without losing integrity.</p>
-      </div>
+      </a>
 
     </div>
   </div>
@@ -570,7 +572,7 @@
       <div class="about-body">
         <h2 class="reveal">Identity for <em>faith</em><br>communities.</h2>
         <p class="reveal reveal-delay-1">
-          I-m a brand and graphic designer based in Buenos Aires with over
+          I'm a brand and graphic designer based in Buenos Aires with over
           <strong>15 years of experience</strong>. For three years I was part of the
           <strong>Church Media Squad</strong> team, producing weekly visual content
           and print materials for churches across the United States.
@@ -730,7 +732,7 @@
               <option>Something else</option>
             </select>
           </div>
-          <div class="form-field">
+  2       <div class="form-field">
             <label>Message <span>(required)</span></label>
             <textarea placeholder="Tell me a bit about your project." required></textarea>
           </div>
@@ -804,13 +806,14 @@
     }
     function goTo(n) {
       current = (n + total) % total;
-      if (slidesEl) slidesEl.style.transform = `translateX(-${current * 100}%)`;
+      if (slidesEl) slidesEl.style.transform = `${current * 100}%)`;
       document.querySelectorAll('.t-dot').forEach((d, i) => d.classList.toggle('active', i === current));
       resetAuto();
     }
     function resetAuto() {
       clearInterval(_autoTimer);
       _autoTimer = setInterval(() => goTo(current + 1), 5000);
+  ), 5000);
     }
     const prevBtn = document.getElementById('tPrev');
     const nextBtn = document.getElementById('tNext');
