@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Event Brand Identity &#8212; B&#225;rbara Soriano</title>
+  <link rel="icon" type="image/png" href="bs-logo.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Inter:wght@300;400;500&display=swap" rel="stylesheet" />
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --dark:        #0D0D0A;
+      --dark2:       #151512;
+      --cream:       #EDE8DF;
+      --cream2:      #E4DDD2;
+      --teal-bg:     #1A3D2E;
+      --teal:        #00CCA8;
+      --teal-dark:   #005252;
+      --text-dark:   #1A1912;
+      --text-light:  #EDE8DF;
+      --muted-dark:  rgba(26,25,18,0.55);
+      --muted-light: rgba(237,232,223,0.55);
+      --border-d:    rgba(237,232,223,0.1);
+      --border-l:    rgba(26,25,18,0.12);
+      --serif:       'Cormorant Garamond', Georgia, 'Times New Roman', serif;
+      --sans:        'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      --max-w:       1480px;
+      --pad:         max(1.5rem, calc((100vw - var(--max-w)) / 2));
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--dark);
+      color: var(--text-light);
+      font-family: var(--sans);
+      font-size: 16px;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+
+    a { color: inherit; text-decoration: none; }
+    em { font-style: italic; }
+
+    .container { max-width: var(--max-w); margin: 0 auto; padding: 0 2rem; }
+
+    /* ── NAV ──────────────────────────────────────────────────────────── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 1.25rem var(--pad);
+      background: rgba(13,13,10,0.88);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--border-d);
+    }
+    .nav-logo { display: flex; align-items: center; gap: 0.6rem; }
+    .nav-logo img { height: 2.25rem; width: auto; display: block; }
+    .nav-links { display: flex; gap: 2.25rem; list-style: none; }
+    .nav-links a {
+      font-family: var(--sans); font-size: 0.75rem; font-weight: 400;
+      letter-spacing: 0.06em; text-transform: uppercase;
+      color: var(--muted-light); transition: color 0.2s;
+    }
+    .nav-links a:hover, .nav-links a.active { color: var(--text-light); }
+
+    /* ── HAMBURGER ─────────────────────────────────────────────────────── */
+    .nav-burger {
+      display: none; flex-direction: column; justify-content: center; gap: 5px;
+      background: none; border: none; cursor: pointer; padding: 6px; z-index: 110;
+    }
+    .nav-burger span {
+      display: block; width: 22px; height: 2px;
+      background: var(--text-light);
+      transition: transform 0.28s ease, opacity 0.28s ease;
+      transform-origin: center;
+    }
+    .nav-burger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .nav-burger.open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+    .nav-burger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+    /* ── SCROLL REVEAL ──────────────────────────────────────────────────── */
+    .reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.7s ease, transform 0.7s ease; }
+    .reveal.visible { opacity: 1; transform: none; }
+    .reveal-delay-1 { transition-delay: 0.1s; }
+    .reveal-delay-2 { transition-delay: 0.2s; }
+
+    /* ── SERVICE HERO ──────────────────────────────────────────────────── */
+    .svc-hero {
+      background: var(--dark);
+      padding: 10rem 0 5rem;
+      border-bottom: 1px solid var(--border-d);
+    }
+    .svc-hero-content {
+      width: 100%; padding: 0 var(--pad);
+    }
+    .svc-back {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      font-size: 0.72rem; letter-spacing: 0.1em; text-transform: uppercase;
+      color: var(--muted-light); margin-bottom: 3rem;
+      transition: color 0.2s, gap 0.2s;
+    }
+    .svc-back:hover { color: var(--text-light); gap: 0.75rem; }
+    .svc-num-hero {
+      font-family: var(--serif); font-size: 1.125rem; font-weight: 300;
+      color: var(--muted-light); display: block; margin-bottom: 0.875rem;
+      letter-spacing: 0.08em;
+    }
+    .svc-hero-content h1 {
+      font-family: var(--serif);
+      font-size: clamp(2.75rem, 5.5vw, 5.5rem);
+      font-weight: 300; line-height: 1.08; letter-spacing: -0.025em;
+      color: var(--text-light); margin-bottom: 1.5rem;
+      max-width: 22ch;
+    }
+    .svc-hero-tagline {
+      font-size: 0.8125rem; letter-spacing: 0.1em; text-transform: uppercase;
+      color: var(--muted-light); font-weight: 300;
+    }
+
+    /* ── SERVICE INTRO ─ cream ─────────────────────────────────────────── */
+    .svc-intro {
+      background: var(--cream); color: var(--text-dark);
+      padding: 7rem 0;
+    }
+    .svc-intro-grid {
+      display: grid; grid-template-columns: 240px 1fr;
+      gap: 6rem; align-items: start;
+    }
+    .svc-meta-label {
+      font-family: var(--sans); font-size: 0.65rem;
+      letter-spacing: 0.14em; text-transform: uppercase;
+      color: var(--muted-dark); margin-bottom: 1.5rem; display: block;
+    }
+    .svc-meta-label::before { content: '↘  '; }
+    .svc-tags { list-style: none; }
+    .svc-tags li {
+      font-size: 0.875rem; color: var(--text-dark);
+      padding: 0.5rem 0; border-bottom: 1px solid var(--border-l);
+      line-height: 1.5;
+    }
+    .svc-body h2 {
+      font-family: var(--serif);
+      font-size: clamp(1.75rem, 3.5vw, 3rem);
+      font-weight: 300; line-height: 1.2; letter-spacing: -0.015em;
+      margin-bottom: 2rem; color: var(--text-dark);
+    }
+    .svc-body p {
+      font-size: 1.0625rem; line-height: 1.85;
+      color: var(--muted-dark); margin-bottom: 2.5rem;
+      max-width: 60ch;
+    }
+    .svc-cta {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      font-family: var(--serif); font-size: 1.125rem; font-style: italic;
+      color: var(--text-dark); border-bottom: 1px solid var(--border-l);
+      padding-bottom: 0.25rem; transition: gap 0.2s, border-color 0.2s;
+    }
+    .svc-cta:hover { gap: 1rem; border-color: var(--text-dark); }
+
+    /* ── SERVICE GALLERY ─ dark ─────────────────────────────────────────── */
+    .svc-gallery {
+      background: var(--dark); padding: 7rem 0;
+      border-top: 1px solid var(--border-d);
+    }
+    .gallery-label {
+      display: block; font-family: var(--sans);
+      font-size: 0.68rem; letter-spacing: 0.14em;
+      text-transform: uppercase; color: var(--muted-light);
+      margin-bottom: 4rem;
+    }
+    .gallery-label::before { content: '↘  '; }
+    .gallery-grid {
+      display: flex; flex-direction: column; gap: 3px;
+    }
+    .gallery-row {
+      display: grid; gap: 3px;
+    }
+    .gallery-row.r-single  { grid-template-columns: 1fr; }
+    .gallery-row.r-duo     { grid-template-columns: 1fr 1fr; }
+    .gallery-row.r-trio    { grid-template-columns: 2fr 1fr; }
+    .gallery-slot { overflow: hidden; background: var(--dark2); }
+    .gallery-slot.tall    { aspect-ratio: 16/9; }
+    .gallery-slot.sq      { aspect-ratio: 4/3; }
+    .gallery-slot.portrait { aspect-ratio: 3/4; }
+    .gallery-slot img {
+      width: 100%; height: 100%; object-fit: cover;
+      display: block;
+      transition: transform 0.6s ease;
+    }
+    .gallery-slot:hover img { transform: scale(1.03); }
+
+    /* ── SERVICE NAV ─────────────────────────────────────────────────────── */
+    .svc-nav {
+      background: var(--dark2);
+      border-top: 1px solid var(--border-d);
+      padding: 0;
+      display: grid; grid-template-columns: 1fr 1fr;
+    }
+    .svc-nav-item {
+      padding: 3rem var(--pad);
+      display: flex; flex-direction: column; gap: 0.5rem;
+      border-right: 1px solid var(--border-d);
+      transition: background 0.2s;
+    }
+    .svc-nav-item:last-child { border-right: none; text-align: right; align-items: flex-end; }
+    .svc-nav-item:hover { background: rgba(237,232,223,0.03); }
+    .svc-nav-dir {
+      font-size: 0.65rem; letter-spacing: 0.14em; text-transform: uppercase;
+      color: var(--muted-light);
+    }
+    .svc-nav-title {
+      font-family: var(--serif); font-size: 1.375rem; font-weight: 300;
+      color: var(--text-light); letter-spacing: -0.01em;
+    }
+
+    /* ── FOOTER ──────────────────────────────────────────────────────────── */
+    footer {
+      background: var(--dark); border-top: 1px solid var(--border-d);
+      padding: 2rem var(--pad);
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .footer-copy {
+      font-size: 0.72rem; color: var(--muted-light); letter-spacing: 0.04em;
+    }
+
+    /* ── MOBILE ──────────────────────────────────────────────────────────── */
+    @media (max-width: 768px) {
+      .nav-links { display: none; }
+      .nav-burger { display: flex; }
+      .nav-links.open {
+        display: flex; flex-direction: column; gap: 0;
+        position: fixed; top: 0; left: 0; right: 0; bottom: 0;
+        background: var(--dark); z-index: 105;
+        align-items: center; justify-content: center;
+      }
+      .nav-links.open a { font-size: 1.5rem; padding: 1rem 0; }
+
+      .svc-intro-grid { grid-template-columns: 1fr; gap: 3rem; }
+      .svc-nav { grid-template-columns: 1fr; }
+      .svc-nav-item { border-right: none; border-bottom: 1px solid var(--border-d); }
+      .svc-nav-item:last-child { text-align: left; align-items: flex-start; border-bottom: none; }
+      .gallery-row.r-trio { grid-template-columns: 1fr; }
+      .gallery-row.r-duo  { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <a href="index.html" class="nav-logo">
+      <img src="bs-logo.png" alt="B&#225;rbara Soriano" />
+    </a>
+    <button class="nav-burger" aria-label="Menu" onclick="this.classList.toggle('open'); document.querySelector('.nav-links').classList.toggle('open')">
+      <span></span><span></span><span></span>
+    </button>
+    <ul class="nav-links">
+      <li><a href="index.html#services" class="active">Services</a></li>
+      <li><a href="index.html#work">Work</a></li>
+      <li><a href="index.html#about">About</a></li>
+      <li><a href="index.html#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+  <section class="svc-hero">
+    <div class="svc-hero-content">
+      <a href="index.html#services" class="svc-back reveal">&#8592; All Services</a>
+      <span class="svc-num-hero reveal reveal-delay-1">04</span>
+      <h1 class="reveal reveal-delay-1">Event Brand Identity</h1>
+      <p class="svc-hero-tagline reveal reveal-delay-2">Visual systems for your most important moments.</p>
+    </div>
+  </section>
+
+  <!-- INTRO -->
+  <section class="svc-intro">
+    <div class="container">
+      <div class="svc-intro-grid">
+        <div class="svc-meta">
+          <span class="svc-meta-label reveal">Deliverables</span>
+          <ul class="svc-tags">
+            <li class="reveal reveal-delay-1">Event Logo & Identity</li>
+            <li class="reveal reveal-delay-1">Poster Series</li>
+            <li class="reveal reveal-delay-1">Digital Graphics</li>
+            <li class="reveal reveal-delay-1">On-site Signage</li>
+            <li class="reveal reveal-delay-1">Program Design</li>
+          </ul>
+        </div>
+        <div class="svc-body">
+          <h2 class="reveal">Every event deserves its own identity.</h2>
+          <p class="reveal reveal-delay-1">Conferences, retreats, camps, special services — each one carries its own energy and purpose. We design a cohesive visual identity that ties every touchpoint together, from the first promotional post to the signage people see when they walk through the door.</p>
+          <p class="reveal reveal-delay-2">Whether it's a weekend retreat or a multi-day conference, the result is a system that's easy for your team to apply across print, digital, and on-site — without losing the craft.</p>
+          <a href="index.html#contact" class="svc-cta reveal">Start a conversation &#8594;</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- GALLERY -->
+  <section class="svc-gallery">
+    <div class="container">
+      <span class="gallery-label reveal">The work</span>
+    </div>
+    <div class="gallery-grid">
+      <div class="gallery-row r-single">
+        <div class="gallery-slot tall"><img src="event-00.png" alt="Event Brand Identity work" /></div>
+      </div>
+      <div class="gallery-row r-duo">
+        <div class="gallery-slot sq"><img src="event-01.png" alt="Event Brand Identity work" /></div>
+        <div class="gallery-slot sq"><img src="event-02.png" alt="Event Brand Identity work" /></div>
+      </div>
+      <div class="gallery-row r-trio">
+        <div class="gallery-slot tall"><img src="event-03.png" alt="Event Brand Identity work" /></div>
+        <div class="gallery-slot portrait"><img src="event-04.png" alt="Event Brand Identity work" /></div>
+      </div>
+      <div class="gallery-row r-duo">
+        <div class="gallery-slot sq"><img src="event-05.png" alt="Event Brand Identity work" /></div>
+        <div class="gallery-slot sq"><img src="event-06.png" alt="Event Brand Identity work" /></div>
+      </div>
+      <div class="gallery-row r-single">
+        <div class="gallery-slot tall"><img src="event-07.png" alt="Event Brand Identity work" /></div>
+      </div>
+      <div class="gallery-row r-trio">
+        <div class="gallery-slot tall"><img src="event-08.png" alt="Event Brand Identity work" /></div>
+        <div class="gallery-slot portrait"><img src="event-09.png" alt="Event Brand Identity work" /></div>
+      </div>
+      <div class="gallery-row r-duo">
+        <div class="gallery-slot sq"><img src="event-10.png" alt="Event Brand Identity work" /></div>
+        <div class="gallery-slot sq"><img src="event-11.png" alt="Event Brand Identity work" /></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICE NAV -->
+  <nav class="svc-nav">
+    <a href="service-sermon-series.html" class="svc-nav-item">
+      <span class="svc-nav-dir">&#8592; Previous</span>
+      <span class="svc-nav-title">Sermon Series Design</span>
+    </a>
+    <a href="service-book-bible.html" class="svc-nav-item">
+      <span class="svc-nav-dir">Next &#8594;</span>
+      <span class="svc-nav-title">Book & Bible Design</span>
+    </a>
+  </nav>
+
+  <!-- FOOTER -->
+  <footer>
+    <span class="footer-copy">&#169; 2026 B&#225;rbara Soriano. All rights reserved.</span>
+  </footer>
+
+  <script>
+    // Scroll reveal
+    const observer = new IntersectionObserver(
+      entries => entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); } }),
+      { threshold: 0.12 }
+    );
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+  </script>
+</body>
+</html>
