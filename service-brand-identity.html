@@ -487,6 +487,8 @@
     });
   }, { threshold: 0.1 });
   document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+    // Hero content is above the fold — reveal immediately
+    document.querySelectorAll('.svc-hero .reveal').forEach(el => el.classList.add('visible'));
 </script>
 
 </body>
