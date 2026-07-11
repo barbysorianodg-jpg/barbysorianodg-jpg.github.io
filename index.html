@@ -4,7 +4,6 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>For Churches & Faith Organizations — Bárbara Soriano</title>
-  <link rel="icon" type="image/png" href="bs-logo.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Inter:wght@300;400;500&display=swap" rel="stylesheet" />
@@ -57,8 +56,15 @@
     .nav-logo {
       display: flex; align-items: center; gap: 0.6rem;
     }
-    .nav-logo img {
-      height: 2.25rem; width: auto; display: block;
+    .nav-logo-b {
+      font-family: var(--serif); font-size: 2rem; font-weight: 600;
+      color: var(--teal); letter-spacing: -0.02em; line-height: 1;
+      font-style: italic;
+    }
+    .nav-logo-name {
+      font-family: var(--sans); font-size: 0.7rem; font-weight: 500;
+      letter-spacing: 0.2em; text-transform: uppercase;
+      color: var(--text-light);
     }
     .nav-links { display: flex; gap: 2.25rem; list-style: none; }
     .nav-links a {
@@ -67,21 +73,6 @@
       color: var(--muted-light); transition: color 0.2s;
     }
     .nav-links a:hover, .nav-links a.active { color: var(--text-light); }
-
-    /* ── HAMBURGER ────────────────────────────────────────── */
-    .nav-burger {
-      display: none; flex-direction: column; justify-content: center; gap: 5px;
-      background: none; border: none; cursor: pointer; padding: 6px; z-index: 110;
-    }
-    .nav-burger span {
-      display: block; width: 22px; height: 2px;
-      background: var(--text-light);
-      transition: transform 0.28s ease, opacity 0.28s ease;
-      transform-origin: center;
-    }
-    .nav-burger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
-    .nav-burger.open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
-    .nav-burger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
 
     /* ── LAYOUT ──────────────────────────────────────────── */
     :root { --max-w: 1480px; --pad: max(1.5rem, calc((100vw - var(--max-w)) / 2)); }
@@ -114,8 +105,8 @@
     }
     #hero-video {
       position: absolute; inset: 0; width: 100%; height: 100%;
-      object-fit: cover; opacity: 0.25; pointer-events: none;
-      display: none;
+      object-fit: cover; opacity: 0.35; pointer-events: none;
+      display: none; /* shown via JS once src is set */
     }
     #hero .container { position: relative; z-index: 1; }
     .hero-tag {
@@ -129,11 +120,11 @@
     }
     .hero-h1 {
       font-family: var(--serif);
-      font-size: clamp(3.25rem, 7vw, 6.75rem);
-      font-weight: 700; line-height: 1.08; letter-spacing: -0.02em;
+      font-size: clamp(3rem, 7vw, 6.5rem);
+      font-weight: 300; line-height: 1.08; letter-spacing: -0.02em;
       margin-bottom: 2.25rem;
     }
-    .hero-h1 em { font-style: italic; font-weight: 400; }
+    .hero-h1 em { font-style: italic; }
     .hero-sub {
       font-size: 1.0625rem; line-height: 1.8;
       color: var(--muted-light); max-width: 50ch; margin-bottom: 3rem;
@@ -175,10 +166,10 @@
     }
 
     .stile {
-      display: block;
       background: var(--cream); padding: 2.25rem 1.875rem 2.5rem;
       transition: background 0.22s;
       cursor: pointer;
+      display: block; text-decoration: none; color: inherit;
     }
     .stile:hover { background: var(--cream2); }
 
@@ -194,8 +185,7 @@
       display: flex; align-items: center; justify-content: center;
       overflow: hidden; margin-bottom: 1.375rem;
     }
-    .stile-img img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.45s ease; }
-    .stile-img:hover img { transform: scale(1.08); }
+    .stile-img img { width: 100%; height: 100%; object-fit: cover; display: block; }
     .stile-img .ph {
       font-size: 0.7rem; color: var(--muted-dark);
       text-align: center; padding: 1rem; line-height: 1.7;
@@ -208,6 +198,7 @@
       font-size: 0.875rem; line-height: 1.7;
       color: var(--muted-dark);
     }
+    /* all tiles equal width in 3-col grid */
 
     /* ── WHO I AM — dark ─────────────────────────────────── */
     #about {
@@ -218,16 +209,16 @@
     #about .sec-label { color: var(--muted-light); }
 
     .about-grid {
-      display: grid; grid-template-columns: 460px 1fr;
+      display: grid; grid-template-columns: 360px 1fr;
       gap: 6rem; align-items: start;
-      max-width: 1120px; margin: 0 auto;
+      max-width: 960px; margin: 0 auto;
     }
 
     .about-photo {
       aspect-ratio: 3/4; background: var(--dark2);
       border: 1px dashed var(--border-d);
       display: flex; align-items: center; justify-content: center;
-      overflow: hidden;
+      overflow: hidden; margin-bottom: 2rem;
     }
     .about-photo img { width: 100%; height: 100%; object-fit: cover; display: block; }
     .about-photo .ph {
@@ -235,7 +226,7 @@
       text-align: center; padding: 1.5rem; line-height: 1.7;
     }
 
-    .about-stats { display: flex; gap: 2.5rem; flex-wrap: wrap; margin-top: 2.5rem; padding-top: 2rem; border-top: 1px solid var(--border-d); }
+    .about-stats { display: flex; gap: 2.5rem; flex-wrap: wrap; }
     .stat-num {
       font-family: var(--serif); font-size: 3.5rem; font-weight: 300;
       color: var(--teal); display: block; line-height: 1;
@@ -425,16 +416,7 @@
     }
     @media (max-width: 640px) {
       nav { padding: 1rem 5vw; }
-      .nav-burger { display: flex; }
-      .nav-links {
-        display: none; position: fixed; inset: 0; top: 62px;
-        flex-direction: column; gap: 0;
-        background: #0D0D0A;
-        padding: 2rem 5vw; list-style: none; z-index: 99;
-      }
-      .nav-links.open { display: flex; }
-      .nav-links li { border-bottom: 1px solid var(--border-d); }
-      .nav-links a { display: block; padding: 1.1rem 0; font-size: 1rem; }
+      .nav-links { gap: 1.25rem; }
       .services-grid { grid-template-columns: 1fr; }
       .process-grid { grid-template-columns: 1fr; }
       footer { flex-direction: column; gap: 0.75rem; text-align: center; }
@@ -446,22 +428,20 @@
 <!-- ── NAV ──────────────────────────────────────────────────── -->
 <nav>
   <a href="/" class="nav-logo">
-    <img src="bs-logo.png" alt="Bárbara Soriano" />
-    <span class="nav-wordmark">Barbara Soriano</span>
+    <img src="bs-logo.png" alt="Bárbara Soriano" style="height:2.25rem; width:auto;" />
   </a>
-  <button class="nav-burger" id="navBurger" aria-label="Menu">
-    <span></span><span></span><span></span>
-  </button>
-  <ul class="nav-links" id="navLinks">
-    <li><a href="#services">Services</a></li>
-    <li><a href="#about">About</a></li>
-    <li><a href="#process">How we work</a></li>
-    <li><a href="#contact" class="active">Let's talk</a></li>
+  <ul class="nav-links">
+    <li><a href="/#work">Work</a></li>
+    <li><a href="/#services">Services</a></li>
+    <li><a href="/#about">About</a></li>
+    <li><a href="#contact" class="active">Churches</a></li>
   </ul>
 </nav>
 
 <!-- ── HERO ─────────────────────────────────────────────────── -->
 <section id="hero">
+  <!-- VIDEO DE FONDO: reemplazá "tu-video.mp4" con el nombre de tu archivo.
+       El video debe estar en la misma carpeta Profile. Se reproduce en loop, sin sonido. -->
   <video id="hero-video" autoplay muted loop playsinline>
     <source src="hero-video.mp4" type="video/mp4" />
   </video>
@@ -477,8 +457,8 @@
       what it takes to communicate it well.
     </p>
     <div class="hero-ctas reveal reveal-delay-3">
-      <a href="#services" class="btn">See what I do &#8594;&#65038;</a>
-      <a href="#contact" class="btn btn-ghost">Let's talk &#8594;&#65038;</a>
+      <a href="#services" class="btn">See what I do →︎</a>
+      <a href="#contact" class="btn btn-ghost">Let's talk →︎</a>
     </div>
   </div>
 </section>
@@ -497,6 +477,7 @@
       <a href="service-brand-identity.html" class="stile reveal">
         <span class="stile-num">01</span>
         <div class="stile-img">
+          <!-- REPLACE: Monte Calvario logo / brand board -->
           <span class="ph">Brand Identity<br>Monte Calvario logo &amp; system</span>
         </div>
         <h3>Brand Identity &amp; Visual Systems</h3>
@@ -504,54 +485,59 @@
       </a>
 
       <!-- 02 Print & Editorial -->
-      <a href="service-print-editorial.html" class="stile reveal reveal-delay-1">
+      <div class="stile reveal reveal-delay-1">
         <span class="stile-num">02</span>
         <div class="stile-img">
+          <!-- REPLACE: Trinity Prayer Guide or Antioch Vision Sunday -->
           <span class="ph">Print &amp; Editorial<br>Trinity 21 Day Prayer Guide</span>
         </div>
         <h3>Print &amp; Editorial Layout</h3>
         <p>Booklets, prayer guides, handbooks, study materials, and curriculum — designed to be read, kept, and passed on.</p>
-      </a>
+      </div>
 
       <!-- 03 Sermon Series Graphics -->
-      <a href="service-sermon-series.html" class="stile reveal reveal-delay-2">
+      <div class="stile reveal reveal-delay-2">
         <span class="stile-num">03</span>
         <div class="stile-img">
+          <!-- REPLACE: CoastLife Freedom Book or Nikao social suite -->
           <span class="ph">Series Graphics<br>CoastLife Freedom / Nikao Christmas</span>
         </div>
         <h3>Sermon Series Graphics</h3>
         <p>Series branding, social media packages, screen slides, and promotional assets — built for your cadence, consistent across every touchpoint.</p>
-      </a>
+      </div>
 
       <!-- 04 Event Brand Identity -->
-      <a href="service-event-brand.html" class="stile reveal">
+      <div class="stile reveal reveal-delay-3">
         <span class="stile-num">04</span>
         <div class="stile-img">
+          <!-- REPLACE: Event flyer / poster from CMS work -->
           <span class="ph">Event Brand Identity<br>Event posters &amp; flyers</span>
         </div>
         <h3>Event Brand Identity</h3>
         <p>Visual identity for conferences, retreats, camps, and special services — a cohesive look that extends across print, digital, and on-site signage.</p>
-      </a>
+      </div>
 
       <!-- 05 Book & Bible Design -->
-      <a href="service-book-bible.html" class="stile reveal reveal-delay-1">
+      <div class="stile reveal reveal-delay-4">
         <span class="stile-num">05</span>
         <div class="stile-img">
+          <!-- REPLACE: e625 book covers or Bible spreads -->
           <span class="ph">Book &amp; Bible Design<br>e625 catalog</span>
         </div>
         <h3>Book &amp; Bible Design</h3>
         <p>Editorial design for Christian publishers — devotionals, study Bibles, curricula, and resources built to hold up across print runs and formats.</p>
-      </a>
+      </div>
 
       <!-- 06 Web & Digital -->
-      <a href="service-web-digital.html" class="stile reveal reveal-delay-2">
+      <div class="stile reveal reveal-delay-5">
         <span class="stile-num">06</span>
         <div class="stile-img">
+          <!-- REPLACE: Monte Calvario website mockup / phone screens -->
           <span class="ph">Web &amp; Digital — Monte Calvario website mockup</span>
         </div>
         <h3>Web &amp; Digital</h3>
         <p>Website layouts, app screen design, and digital assets — visual systems that translate from print to screen without losing integrity.</p>
-      </a>
+      </div>
 
     </div>
   </div>
@@ -565,7 +551,22 @@
 
       <div>
         <div class="about-photo reveal">
+          <!-- REPLACE: your photo here, 3:4 ratio -->
           <span class="ph" style="color:rgba(237,232,223,0.35)">Your photo<br><span style="opacity:0.6; font-size:0.65rem">3 : 4 ratio recommended</span></span>
+        </div>
+        <div class="about-stats reveal reveal-delay-1">
+          <div>
+            <span class="stat-num">50+</span>
+            <span class="stat-label">US churches</span>
+          </div>
+          <div>
+            <span class="stat-num">15+</span>
+            <span class="stat-label">Years experience</span>
+          </div>
+          <div>
+            <span class="stat-num">20+</span>
+            <span class="stat-label">Countries reached</span>
+          </div>
         </div>
       </div>
 
@@ -593,22 +594,8 @@
           last-minute sermon series graphic, and the care that goes into a prayer
           guide. That's not something you have to explain to me.
         </p>
-        <div class="about-stats reveal reveal-delay-4">
-          <div>
-            <span class="stat-num">50+</span>
-            <span class="stat-label">US churches</span>
-          </div>
-          <div>
-            <span class="stat-num">15+</span>
-            <span class="stat-label">Years experience</span>
-          </div>
-          <div>
-            <span class="stat-num">20+</span>
-            <span class="stat-label">Countries reached</span>
-          </div>
-        </div>
         <a href="#contact" class="about-cta reveal reveal-delay-5">
-          Start a conversation &#8594;&#65038;
+          Start a conversation →︎
         </a>
       </div>
 
@@ -685,9 +672,9 @@
     </div>
 
     <div class="t-controls">
-      <button class="t-btn" id="tPrev" aria-label="Previous">&#8592;</button>
+      <button class="t-btn" id="tPrev" aria-label="Previous">←</button>
       <div class="t-dots" id="tDots"></div>
-      <button class="t-btn" id="tNext" aria-label="Next">&#8594;</button>
+      <button class="t-btn" id="tNext" aria-label="Next">→</button>
     </div>
   </div>
 </section>
@@ -732,11 +719,11 @@
               <option>Something else</option>
             </select>
           </div>
-  2       <div class="form-field">
+          <div class="form-field">
             <label>Message <span>(required)</span></label>
             <textarea placeholder="Tell me a bit about your project." required></textarea>
           </div>
-          <button type="submit" class="form-submit">Submit &#8594;&#65038;</button>
+          <button type="submit" class="form-submit">Submit →︎</button>
         </form>
       </div>
 
@@ -746,7 +733,7 @@
 
 <!-- ── FOOTER ─────────────────────────────────────────────────── -->
 <footer>
-  <p>&#169; 2026 Bárbara Soriano · <a href="/">barbarasoriano.com</a></p>
+  <p>© 2026 Bárbara Soriano · <a href="/">barbarasoriano.com</a></p>
   <p>
     <a href="/#work">Work</a> &nbsp;·&nbsp;
     <a href="/#about">About</a> &nbsp;·&nbsp;
@@ -756,24 +743,6 @@
 
 <!-- ── SCRIPTS ────────────────────────────────────────────────── -->
 <script>
-  // ── Hamburger nav ──
-  const burger = document.getElementById('navBurger');
-  const navLinks = document.getElementById('navLinks');
-  if (burger && navLinks) {
-    burger.addEventListener('click', () => {
-      burger.classList.toggle('open');
-      navLinks.classList.toggle('open');
-      document.body.style.overflow = navLinks.classList.contains('open') ? 'hidden' : '';
-    });
-    navLinks.querySelectorAll('a').forEach(a => {
-      a.addEventListener('click', () => {
-        burger.classList.remove('open');
-        navLinks.classList.remove('open');
-        document.body.style.overflow = '';
-      });
-    });
-  }
-
   // ── Hero video ──
   const heroVid = document.getElementById('hero-video');
   if (heroVid) heroVid.addEventListener('canplay', () => heroVid.style.display = 'block');
@@ -806,7 +775,7 @@
     }
     function goTo(n) {
       current = (n + total) % total;
-      if (slidesEl) slidesEl.style.transform = `${current * 100}%)`;
+      if (slidesEl) slidesEl.style.transform = `translateX(-${current * 100}%)`;
       document.querySelectorAll('.t-dot').forEach((d, i) => d.classList.toggle('active', i === current));
       resetAuto();
     }
@@ -878,7 +847,7 @@
     if (contactIntro) contactIntro.innerHTML = c.contact.intro;
     if (contactEmail) { contactEmail.textContent = c.contact.email; contactEmail.href = 'mailto:' + c.contact.email; }
 
-  }).catch(() => {});
+  }).catch(() => {}); // silent — hardcoded content remains if no content.json
 </script>
 
 </body>
