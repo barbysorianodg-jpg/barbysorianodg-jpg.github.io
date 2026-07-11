@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Brand Identity & Visual Systems — Bárbara Soriano</title>
+  <link rel="icon" type="image/png" href="bs-logo.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Inter:wght@300;400;500&display=swap" rel="stylesheet" />
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --dark:        #0D0D0A;
+      --dark2:       #151512;
+      --cream:       #EDE8DF;
+      --cream2:      #E4DDD2;
+      --teal-bg:     #1A3D2E;
+      --teal:        #00CCA8;
+      --teal-dark:   #005252;
+      --text-dark:   #1A1912;
+      --text-light:  #EDE8DF;
+      --muted-dark:  rgba(26,25,18,0.55);
+      --muted-light: rgba(237,232,223,0.55);
+      --border-d:    rgba(237,232,223,0.1);
+      --border-l:    rgba(26,25,18,0.12);
+      --serif:       'Cormorant Garamond', Georgia, 'Times New Roman', serif;
+      --sans:        'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      --max-w:       1480px;
+      --pad:         max(1.5rem, calc((100vw - var(--max-w)) / 2));
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--dark);
+      color: var(--text-light);
+      font-family: var(--sans);
+      font-size: 16px;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+
+    a { color: inherit; text-decoration: none; }
+    em { font-style: italic; }
+
+    .container { max-width: var(--max-w); margin: 0 auto; padding: 0 2rem; }
+
+    /* ── NAV ─────────────────────────────────────────────────── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 1.25rem var(--pad);
+      background: rgba(13,13,10,0.88);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--border-d);
+    }
+    .nav-logo { display: flex; align-items: center; gap: 0.6rem; }
+    .nav-logo img { height: 2.25rem; width: auto; display: block; }
+    .nav-links { display: flex; gap: 2.25rem; list-style: none; }
+    .nav-links a {
+      font-family: var(--sans); font-size: 0.75rem; font-weight: 400;
+      letter-spacing: 0.06em; text-transform: uppercase;
+      color: var(--muted-light); transition: color 0.2s;
+    }
+    .nav-links a:hover, .nav-links a.active { color: var(--text-light); }
+
+    /* ── HAMBURGER ────────────────────────────────────────────── */
+    .nav-burger {
+      display: none; flex-direction: column; justify-content: center; gap: 5px;
+      background: none; border: none; cursor: pointer; padding: 6px; z-index: 110;
+    }
+    .nav-burger span {
+      display: block; width: 22px; height: 2px;
+      background: var(--text-light);
+      transition: transform 0.28s ease, opacity 0.28s ease;
+      transform-origin: center;
+    }
+    .nav-burger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .nav-burger.open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+    .nav-burger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+    /* ── SCROLL REVEAL ────────────────────────────────────────── */
+    .reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.7s ease, transform 0.7s ease; }
+    .reveal.visible { opacity: 1; transform: none; }
+    .reveal-delay-1 { transition-delay: 0.1s; }
+    .reveal-delay-2 { transition-delay: 0.2s; }
+
+    /* ── SERVICE HERO ─────────────────────────────────────────── */
+    .svc-hero {
+      background: var(--dark);
+      padding: 10rem 0 5rem;
+      border-bottom: 1px solid var(--border-d);
+    }
+    .svc-hero-content {
+      width: 100%; padding: 0 var(--pad);
+    }
+    .svc-back {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      font-size: 0.72rem; letter-spacing: 0.1em; text-transform: uppercase;
+      color: var(--muted-light); margin-bottom: 3rem;
+      transition: color 0.2s, gap 0.2s;
+    }
+    .svc-back:hover { color: var(--text-light); gap: 0.75rem; }
+    .svc-num-hero {
+      font-family: var(--serif); font-size: 1.125rem; font-weight: 300;
+      color: var(--muted-light); display: block; margin-bottom: 0.875rem;
+      letter-spacing: 0.08em;
+    }
+    .svc-hero-content h1 {
+      font-family: var(--serif);
+      font-size: clamp(2.75rem, 5.5vw, 5.5rem);
+      font-weight: 300; line-height: 1.08; letter-spacing: -0.025em;
+      color: var(--text-light); margin-bottom: 1.5rem;
+      max-width: 22ch;
+    }
+    .svc-hero-tagline {
+      font-size: 0.8125rem; letter-spacing: 0.1em; text-transform: uppercase;
+      color: var(--muted-light); font-weight: 300;
+    }
+
+    /* ── SERVICE INTRO — cream ────────────────────────────────── */
+    .svc-intro {
+      background: var(--cream); color: var(--text-dark);
+      padding: 7rem 0;
+    }
+    .svc-intro-grid {
+      display: grid; grid-template-columns: 240px 1fr;
+      gap: 6rem; align-items: start;
+    }
+    .svc-meta-label {
+      font-family: var(--sans); font-size: 0.65rem;
+      letter-spacing: 0.14em; text-transform: uppercase;
+      color: var(--muted-dark); margin-bottom: 1.5rem; display: block;
+    }
+    .svc-meta-label::before { content: '↘  '; }
+    .svc-tags { list-style: none; }
+    .svc-tags li {
+      font-size: 0.875rem; color: var(--text-dark);
+      padding: 0.5rem 0; border-bottom: 1px solid var(--border-l);
+      line-height: 1.5;
+    }
+    .svc-body h2 {
+      font-family: var(--serif);
+      font-size: clamp(1.75rem, 3.5vw, 3rem);
+      font-weight: 300; line-height: 1.2; letter-spacing: -0.015em;
+      margin-bottom: 2rem; color: var(--text-dark);
+    }
+    .svc-body p {
+      font-size: 1.0625rem; line-height: 1.85;
+      color: var(--muted-dark); margin-bottom: 2.5rem;
+      max-width: 60ch;
+    }
+    .svc-cta {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      font-family: var(--serif); font-size: 1.125rem; font-style: italic;
+      color: var(--text-dark); border-bottom: 1px solid var(--border-l);
+      padding-bottom: 0.25rem; transition: gap 0.2s, border-color 0.2s;
+    }
+    .svc-cta:hover { gap: 1rem; border-color: var(--text-dark); }
+
+    /* ── SERVICE GALLERY — dark ───────────────────────────────── */
+    .svc-gallery {
+      background: var(--dark); padding: 7rem 0;
+      border-top: 1px solid var(--border-d);
+    }
+    .gallery-label {
+      display: block; font-family: var(--sans);
+      font-size: 0.68rem; letter-spacing: 0.14em;
+      text-transform: uppercase; color: var(--muted-light);
+      margin-bottom: 4rem;
+    }
+    .gallery-label::before { content: '↘  '; }
+    .gallery-grid {
+      display: flex; flex-direction: column; gap: 3px;
+    }
+    .gallery-row {
+      display: grid; gap: 3px;
+    }
+    .gallery-row.r-single { grid-template-columns: 1fr; }
+    .gallery-row.r-duo { grid-template-columns: 1fr 1fr; }
+    .gallery-row.r-trio { grid-template-columns: 2fr 1fr; }
+
+    /* Image slot — placeholder + actual img overlay */
+    .gallery-slot {
+      position: relative; overflow: hidden;
+      background: var(--dark2);
+      border: 1px dashed rgba(237,232,223,0.1);
+    }
+    .gallery-slot.tall { aspect-ratio: 16/9; }
+    .gallery-slot.sq { aspect-ratio: 4/3; }
+    .gallery-slot.portrait { aspect-ratio: 3/4; }
+    .slot-ph {
+      position: absolute; inset: 0;
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center; gap: 0.625rem;
+      pointer-events: none;
+    }
+    .slot-ph-num {
+      font-family: var(--serif); font-size: 3.5rem; font-weight: 300;
+      color: rgba(237,232,223,0.06); display: block; line-height: 1;
+    }
+    .slot-ph-label {
+      font-family: var(--sans); font-size: 0.65rem;
+      letter-spacing: 0.12em; text-transform: uppercase;
+      color: rgba(237,232,223,0.18);
+    }
+    .slot-ph-hint {
+      font-family: var(--sans); font-size: 0.6rem;
+      color: rgba(237,232,223,0.1); letter-spacing: 0.05em;
+      margin-top: 0.5rem; text-align: center; padding: 0 2rem;
+    }
+    /* When an actual <img> is added inside .gallery-slot */
+    .gallery-slot > img {
+      position: absolute; inset: 0;
+      width: 100%; height: 100%; object-fit: cover; display: block;
+    }
+
+    /* ── SERVICE PREV/NEXT ────────────────────────────────────── */
+    .svc-nav-section {
+      background: var(--dark2);
+      border-top: 1px solid var(--border-d);
+    }
+    .svc-nav-grid {
+      display: grid; grid-template-columns: 1fr 1fr;
+    }
+    .svc-nav-card {
+      padding: 3.5rem 2.5rem; display: flex; flex-direction: column;
+      border-right: 1px solid var(--border-d);
+      transition: background 0.22s;
+    }
+    .svc-nav-card:last-child { border-right: none; }
+    .svc-nav-card:hover { background: rgba(237,232,223,0.04); }
+    .svc-nav-dir {
+      font-size: 0.68rem; letter-spacing: 0.12em; text-transform: uppercase;
+      color: var(--muted-light); margin-bottom: 1.25rem; display: block;
+    }
+    .svc-nav-card-num {
+      font-family: var(--serif); font-size: 1rem; font-weight: 300;
+      color: var(--muted-light); display: block; margin-bottom: 0.375rem;
+    }
+    .svc-nav-card-title {
+      font-family: var(--serif);
+      font-size: clamp(1.375rem, 2.5vw, 2rem);
+      font-weight: 300; line-height: 1.25; letter-spacing: -0.015em;
+      color: var(--text-light); flex: 1;
+    }
+    .svc-nav-arrow {
+      font-size: 1.25rem; margin-top: 2rem; color: var(--muted-light);
+      transition: transform 0.2s, color 0.2s;
+    }
+    .svc-nav-card:hover .svc-nav-arrow { transform: translateX(8px); color: var(--text-light); }
+    .svc-nav-card.prev .svc-nav-arrow { transform: none; }
+    .svc-nav-card.prev:hover .svc-nav-arrow { transform: translateX(-8px); }
+
+    /* ── IMPACT QUOTE ────────────────────────────────────────── */
+    .svc-impact {
+      background: var(--teal-bg); color: var(--cream);
+      padding: 7rem 0;
+    }
+    .svc-impact-label {
+      display: block; font-family: var(--sans);
+      font-size: 0.68rem; letter-spacing: 0.14em; text-transform: uppercase;
+      color: rgba(237,232,223,0.4); margin-bottom: 4rem;
+    }
+    .svc-impact-label::before { content: '↘  '; }
+    .svc-impact-quote {
+      font-family: var(--serif);
+      font-size: clamp(1.75rem, 3.5vw, 3rem);
+      font-weight: 300; line-height: 1.38; letter-spacing: -0.01em;
+      font-style: italic; color: var(--cream);
+      max-width: 28ch; margin-bottom: 2.5rem;
+    }
+    .svc-impact-attr {
+      font-size: 0.75rem; letter-spacing: 0.12em; text-transform: uppercase;
+      color: rgba(237,232,223,0.45); display: block;
+    }
+    .svc-impact-attr::before { content: '— '; }
+
+    /* ── FOOTER ──────────────────────────────────────────────── */
+    footer {
+      background: var(--dark); border-top: 1px solid var(--border-d);
+      padding: 2rem var(--pad);
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    footer p { font-size: 0.78rem; color: var(--muted-light); }
+    footer a { color: var(--muted-light); transition: color 0.2s; }
+    footer a:hover { color: var(--text-light); }
+
+    /* ── RESPONSIVE ──────────────────────────────────────────── */
+    @media (max-width: 860px) {
+      .svc-intro-grid { grid-template-columns: 1fr; gap: 3rem; }
+      .gallery-row.r-duo, .gallery-row.r-trio { grid-template-columns: 1fr; }
+      .svc-nav-grid { grid-template-columns: 1fr; }
+      .svc-nav-card { border-right: none; border-bottom: 1px solid var(--border-d); }
+    }
+    @media (max-width: 640px) {
+      nav { padding: 1rem 5vw; }
+      .nav-burger { display: flex; }
+      .nav-links {
+        display: none; position: fixed; inset: 0; top: 62px;
+        flex-direction: column; gap: 0; background: #0D0D0A;
+        padding: 2rem 5vw; list-style: none; z-index: 99;
+      }
+      .nav-links.open { display: flex; }
+      .nav-links li { border-bottom: 1px solid var(--border-d); }
+      .nav-links a { display: block; padding: 1.1rem 0; font-size: 1rem; }
+      footer { flex-direction: column; gap: 0.75rem; text-align: center; }
+      .svc-hero-content h1 { font-size: clamp(2.5rem, 10vw, 4.5rem); }
+    }
+
+  </style>
+</head>
+<body>
+
+<!-- ── NAV ──────────────────────────────────────────────────────── -->
+<nav>
+  <a href="/" class="nav-logo">
+    <img src="bs-logo.png" alt="Bárbara Soriano" />
+    <span class="nav-wordmark">Barbara Soriano</span>
+  </a>
+  <button class="nav-burger" id="navBurger" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="/#services">Services</a></li>
+    <li><a href="/#about">About</a></li>
+    <li><a href="/#process">How we work</a></li>
+    <li><a href="/#contact">Let's talk</a></li>
+  </ul>
+</nav>
+
+<!-- ── HERO ──────────────────────────────────────────────────────── -->
+<section class="svc-hero">
+  <div class="svc-hero-content">
+    <a href="/#services" class="svc-back reveal">← All services</a>
+    <span class="svc-num-hero reveal reveal-delay-1">01</span>
+    <h1 class="reveal reveal-delay-1">Brand Identity &amp; Visual Systems</h1>
+    <p class="svc-hero-tagline reveal reveal-delay-2">A visual language built to last</p>
+  </div>
+</section>
+
+<!-- ── INTRO ──────────────────────────────────────────────────────── -->
+<section class="svc-intro">
+  <div class="container">
+    <div class="svc-intro-grid">
+
+      <div class="svc-meta reveal">
+        <span class="svc-meta-label">Services</span>
+        <ul class="svc-tags">
+            <li>Visual Identity</li>
+            <li>Logo Design</li>
+            <li>Brand Guidelines</li>
+            <li>Typography Systems</li>
+            <li>Color Palette</li>
+        </ul>
+      </div>
+
+      <div class="svc-body">
+        <h2 class="reveal">Every element working together — from the logo to the last page.</h2>
+        <p class="reveal reveal-delay-1">I build brand systems that hold up across every format and season — logo, color palette, typography, brand guidelines, and all the assets your team needs to communicate consistently. Whether you're starting from scratch or bringing clarity to an identity that's grown without structure, the goal is a visual language your whole team can speak, without a designer in the room.</p>
+        <a href="/#contact" class="svc-cta reveal reveal-delay-2">Start a conversation &#8594;&#65038;</a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ── GALLERY ─────────────────────────────────────────────────────── -->
+<section class="svc-gallery">
+  <div class="container">
+    <span class="gallery-label reveal">The work</span>
+  </div>
+  <div class="gallery-grid">
+    <div class="gallery-row r-single">
+        <div class="gallery-slot tall">
+          <div class="slot-ph">
+            <span class="slot-ph-num">01</span>
+            <span class="slot-ph-label">Upload image 01</span>
+            <span class="slot-ph-hint">Hero / wide — 1400 × 790 px or larger</span>
+          </div>
+          <!-- Add your image: <img src="your-image.jpg" alt="" /> -->
+        </div>
+    </div>
+    <div class="gallery-row r-duo">
+        <div class="gallery-slot sq">
+          <div class="slot-ph">
+            <span class="slot-ph-num">02</span>
+            <span class="slot-ph-label">Upload image 02</span>
+            <span class="slot-ph-hint">4:3 ratio — 900 × 675 px</span>
+          </div>
+          <!-- Add your image: <img src="your-image.jpg" alt="" /> -->
+        </div>
+        <div class="gallery-slot sq">
+          <div class="slot-ph">
+            <span class="slot-ph-num">03</span>
+            <span class="slot-ph-label">Upload image 03</span>
+            <span class="slot-ph-hint">4:3 ratio — 900 × 675 px</span>
+          </div>
+          <!-- Add your image: <img src="your-image.jpg" alt="" /> -->
+        </div>
+    </div>
+    <div class="gallery-row r-single">
+        <div class="gallery-slot tall">
+          <div class="slot-ph">
+            <span class="slot-ph-num">04</span>
+            <span class="slot-ph-label">Upload image 04</span>
+            <span class="slot-ph-hint">Wide — 1400 × 790 px or larger</span>
+          </div>
+          <!-- Add your image: <img src="your-image.jpg" alt="" /> -->
+        </div>
+    </div>
+    <div class="gallery-row r-duo">
+        <div class="gallery-slot sq">
+          <div class="slot-ph">
+            <span class="slot-ph-num">05</span>
+            <span class="slot-ph-label">Upload image 05</span>
+            <span class="slot-ph-hint">4:3 ratio — 900 × 675 px</span>
+          </div>
+          <!-- Add your image: <img src="your-image.jpg" alt="" /> -->
+        </div>
+        <div class="gallery-slot sq">
+          <div class="slot-ph">
+            <span class="slot-ph-num">06</span>
+            <span class="slot-ph-label">Upload image 06</span>
+            <span class="slot-ph-hint">4:3 ratio — 900 × 675 px</span>
+          </div>
+          <!-- Add your image: <img src="your-image.jpg" alt="" /> -->
+        </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── PREV / NEXT ──────────────────────────────────────────────────── -->
+<section class="svc-nav-section">
+  <div class="svc-nav-grid">
+    <a href="service-web-digital.html" class="svc-nav-card prev">
+      <span class="svc-nav-dir">← Previous</span>
+      <span class="svc-nav-card-num">06</span>
+      <span class="svc-nav-card-title">Web &amp; Digital</span>
+      <span class="svc-nav-arrow">←</span>
+    </a>
+    <a href="service-print-editorial.html" class="svc-nav-card next">
+      <span class="svc-nav-dir">Next →</span>
+      <span class="svc-nav-card-num">02</span>
+      <span class="svc-nav-card-title">Print &amp; Editorial Layout</span>
+      <span class="svc-nav-arrow">→</span>
+    </a>
+  </div>
+</section>
+
+<!-- ── FOOTER ──────────────────────────────────────────────────────── -->
+<footer>
+  <p>&#169; 2026 Bárbara Soriano · <a href="/">barbarasoriano.com</a></p>
+  <p>
+    <a href="/#services">Services</a> &nbsp;·&nbsp;
+    <a href="/#about">About</a> &nbsp;·&nbsp;
+    <a href="/#contact">Let's talk</a>
+  </p>
+</footer>
+
+<!-- ── SCRIPTS ──────────────────────────────────────────────────────── -->
+<script>
+  // Hamburger
+  const burger = document.getElementById('navBurger');
+  const navLinks = document.getElementById('navLinks');
+  if (burger && navLinks) {
+    burger.addEventListener('click', () => {
+      burger.classList.toggle('open');
+      navLinks.classList.toggle('open');
+      document.body.style.overflow = navLinks.classList.contains('open') ? 'hidden' : '';
+    });
+    navLinks.querySelectorAll('a').forEach(a => {
+      a.addEventListener('click', () => {
+        burger.classList.remove('open');
+        navLinks.classList.remove('open');
+        document.body.style.overflow = '';
+      });
+    });
+  }
+
+  // Scroll reveal
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); }
+    });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
+
+</body>
+</html>
