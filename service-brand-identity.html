@@ -190,9 +190,13 @@
       background: var(--dark2);
       border: 1px dashed rgba(237,232,223,0.1);
     }
-    .gallery-slot.tall { aspect-ratio: 16/9; }
-    .gallery-slot.sq { aspect-ratio: 3/4; }
-    .gallery-slot.portrait { aspect-ratio: 2/4; }
+.gallery-slot.wide {
+    aspect-ratio: 16 / 9;
+}
+
+.gallery-slot.half {
+    aspect-ratio: 4 / 3;
+}
     .slot-ph {
       position: absolute; inset: 0;
       display: flex; flex-direction: column;
@@ -371,61 +375,86 @@
 
 <!-- ── GALLERY ─────────────────────────────────────────────────────── -->
 <section class="svc-gallery">
-  <div class="container">
-    <span class="gallery-label reveal">The work</span>
-  </div>
-  <div class="gallery-grid">
+  <div class=<div class="gallery-grid">
+
+    <!-- Hero -->
     <div class="gallery-row r-single">
-      <div class="gallery-slot tall">
-        <img src="brand-00.png" alt="Brand Identity work" />
-      </div>
+        <div class="gallery-slot wide">
+            <div class="slot-ph">
+                <span class="slot-ph-num">01</span>
+                <span class="slot-ph-label">Upload image 01</span>
+                <span class="slot-ph-hint">Wide — 1400 × 790 px or larger</span>
+            </div>
+        </div>
     </div>
+
+    <!-- 4:3 -->
     <div class="gallery-row r-duo">
-      <div class="gallery-slot sq">
-        <img src="brand-04.png" alt="Brand Identity work" />
-      </div>
-      <div class="gallery-slot sq">
-        <img src="brand-02.png" alt="Brand Identity work" />
-      </div>
+        <div class="gallery-slot half">
+            <div class="slot-ph">
+                <span class="slot-ph-num">02</span>
+                <span class="slot-ph-label">Upload image 02</span>
+                <span class="slot-ph-hint">4:3 ratio — 900 × 675 px</span>
+            </div>
+        </div>
+
+        <div class="gallery-slot half">
+            <div class="slot-ph">
+                <span class="slot-ph-num">03</span>
+                <span class="slot-ph-label">Upload image 03</span>
+                <span class="slot-ph-hint">4:3 ratio — 900 × 675 px</span>
+            </div>
+        </div>
     </div>
-    <div class="gallery-row r-trio">
-      <div class="gallery-slot tall">
-        <img src="brand-03.png" alt="Brand Identity work" />
-      </div>
-      <div class="gallery-slot portrait">
-        <img src="brand-04.png" alt="Brand Identity work" />
-      </div>
-    </div>
-    <div class="gallery-row r-duo">
-      <div class="gallery-slot sq">
-        <img src="brand-05.png" alt="Brand Identity work" />
-      </div>
-      <div class="gallery-slot sq">
-        <img src="brand-06.png" alt="Brand Identity work" />
-      </div>
-    </div>
+
+    <!-- Wide -->
     <div class="gallery-row r-single">
-      <div class="gallery-slot tall">
-        <img src="brand-01.png" alt="Brand Identity work" />
-      </div>
+        <div class="gallery-slot wide">
+            <div class="slot-ph">
+                <span class="slot-ph-num">04</span>
+                <span class="slot-ph-label">Upload image 04</span>
+                <span class="slot-ph-hint">Wide — 1400 × 790 px or larger</span>
+            </div>
+        </div>
     </div>
-    <div class="gallery-row r-trio">
-      <div class="gallery-slot tall">
-        <img src="brand-08.png" alt="Brand Identity work" />
-      </div>
-      <div class="gallery-slot portrait">
-        <img src="brand-09.png" alt="Brand Identity work" />
-      </div>
-    </div>
+
+    <!-- 4:3 -->
     <div class="gallery-row r-duo">
-      <div class="gallery-slot sq">
-        <img src="brand-10.png" alt="Brand Identity work" />
-      </div>
-      <div class="gallery-slot sq">
-        <img src="brand-11.png" alt="Brand Identity work" />
-      </div>
+        <div class="gallery-slot half">
+            <div class="slot-ph">
+                <span class="slot-ph-num">05</span>
+                <span class="slot-ph-label">Upload image 05</span>
+                <span class="slot-ph-hint">4:3 ratio — 900 × 675 px</span>
+            </div>
+        </div>
+
+        <div class="gallery-slot half">
+            <div class="slot-ph">
+                <span class="slot-ph-num">06</span>
+                <span class="slot-ph-label">Upload image 06</span>
+                <span class="slot-ph-hint">4:3 ratio — 900 × 675 px</span>
+            </div>
+        </div>
     </div>
-  </div>
+
+    <!-- 4:3 -->
+    <div class="gallery-row r-duo">
+        <div class="gallery-slot half">
+            <div class="slot-ph">
+                <span class="slot-ph-num">07</span>
+                <span class="slot-ph-label">Upload image 07</span>
+                <span class="slot-ph-hint">4:3 ratio — 900 × 675 px</span>
+            </div>
+        </div>
+
+        <div class="gallery-slot half">
+            <div class="slot-ph">
+                <span class="slot-ph-num">08</span>
+                <span class="slot-ph-label">Upload image 08</span>
+                <span class="slot-ph-hint">4:3 ratio — 900 × 675 px</span>
+            </div>
+        </div>
+    </div>
 </section>
 
 <!-- ── PREV / NEXT ──────────────────────────────────────────────────── -->
