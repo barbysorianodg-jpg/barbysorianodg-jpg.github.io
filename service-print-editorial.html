@@ -30,6 +30,7 @@
     nav { position:fixed; top:0; left:0; right:0; z-index:100; display:flex; align-items:center; justify-content:space-between; padding:1.25rem var(--pad); background:rgba(13,13,10,0.88); backdrop-filter:blur(14px); border-bottom:1px solid var(--border-d); }
     .nav-logo { display:flex; align-items:center; gap:0.6rem; }
     .nav-logo img { height:2.25rem; width:auto; display:block; }
+    .nav-wordmark { font-family: var(--sans); font-size: 0.875rem; font-weight: 400; color: var(--text-light); letter-spacing: 0.01em; }
     .nav-links { display:flex; gap:2.25rem; list-style:none; }
     .nav-links a { font-family:var(--sans); font-size:0.75rem; font-weight:400; letter-spacing:0.06em; text-transform:uppercase; color:var(--muted-light); transition:color 0.2s; }
     .nav-links a:hover, .nav-links a.active { color:var(--text-light); }
@@ -129,6 +130,7 @@
 <nav>
   <a href="index.html" class="nav-logo">
     <img src="bs-logo.png" alt="Bárbara Soriano" />
+    <span class="nav-wordmark">Barbara Soriano</span>
   </a>
   <button class="nav-burger" aria-label="Menu" onclick="this.classList.toggle('open'); document.querySelector('.nav-links').classList.toggle('open')">
     <span></span><span></span><span></span>
@@ -136,7 +138,8 @@
   <ul class="nav-links">
     <li><a href="index.html#services">Services</a></li>
     <li><a href="index.html#about">About</a></li>
-    <li><a href="index.html#contact">Contact</a></li>
+    <li><a href="index.html#process">How we work</a></li>
+    <li><a href="index.html#contact">Let's talk</a></li>
   </ul>
 </nav>
 
