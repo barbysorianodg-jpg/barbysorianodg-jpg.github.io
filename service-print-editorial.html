@@ -27,7 +27,7 @@
     em { font-style:italic; }
     .container { max-width:var(--max-w); margin:0 auto; padding:0 2rem; }
 
-    nav { position:fixed; top:0; left:0; right:0; z-index:100; display:flex; align-items:center; justify-content:space-between; padding:1.25rem var(--pad); background:rgba(13,13,10,0.88); backdrop-filter:blur(14px); border-bottom:1px solid var(--border-d); }
+    nav:not(.svc-nav) { position:fixed; top:0; left:0; right:0; z-index:100; display:flex; align-items:center; justify-content:space-between; padding:1.25rem var(--pad); background:rgba(13,13,10,0.88); backdrop-filter:blur(14px); border-bottom:1px solid var(--border-d); }
     .nav-logo { display:flex; align-items:center; gap:0.6rem; }
     .nav-logo img { height:2.25rem; width:auto; display:block; }
     .nav-wordmark { font-family: var(--sans); font-size: 0.875rem; font-weight: 400; color: var(--text-light); letter-spacing: 0.01em; }
