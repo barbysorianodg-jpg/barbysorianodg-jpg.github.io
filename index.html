@@ -54,8 +54,13 @@
       backdrop-filter: blur(14px);
       border-bottom: 1px solid var(--border-d);
     }
-    .nav-logo { display: flex; align-items: center; gap: 0.6rem; }
-    .nav-logo img { height: 2.25rem; width: auto; display: block; }
+    .nav-logo {
+      display: flex; align-items: center; gap: 0.6rem;
+    }
+    .nav-logo img {
+      height: 2.25rem; width: auto; display: block;
+    }
+    .nav-wordmark { font-family: var(--sans); font-size: 0.875rem; font-weight: 400; color: var(--text-light); letter-spacing: 0.01em; }
     .nav-links { display: flex; gap: 2.25rem; list-style: none; }
     .nav-links a {
       font-family: var(--sans); font-size: 0.75rem; font-weight: 400;
@@ -442,17 +447,17 @@
 <!-- ── NAV ──────────────────────────────────────────────────── -->
 <nav>
   <a href="/" class="nav-logo">
-    <img src="bs-logo.png" alt="Bárbara Soriano">
+    <img src="bs-logo.png" alt="Bárbara Soriano" />
     <span class="nav-wordmark">Barbara Soriano</span>
   </a>
-  <button class="nav-burger" id="navBurger" aria-label="Menu">
+  <button class="nav-burger" aria-label="Menu" onclick="this.classList.toggle('open'); document.querySelector('.nav-links').classList.toggle('open')">
     <span></span><span></span><span></span>
   </button>
-  <ul class="nav-links" id="navLinks">
-    <li><a href="/#services">Services</a></li>
-    <li><a href="/#about">About</a></li>
-    <li><a href="/#process">How we work</a></li>
-    <li><a href="/#contact">Let's talk</a></li>
+  <ul class="nav-links">
+    <li><a href="#services">Services</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#process">How we work</a></li>
+    <li><a href="#contact">Let's talk</a></li>
   </ul>
 </nav>
 
