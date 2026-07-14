@@ -1,76 +1,77 @@
 {
   "hero": {
     "tag": "For Churches & Faith Organizations",
-    "h1": "Branding for churches<br><em>with a mission.</em>",
+    "h1": "Design that speaks<br><em>your language.</em>",
     "sub": "With <strong>over 15 years of experience</strong>, I've worked alongside faith organizations — from complete rebrands to weekly print materials, curricula, and publishing. I understand the mission, the timeline, and what it takes to communicate it well.",
-    "video": "Video hero - lento.m4v"
+    "video": "hero-video.mp4"
   },
   "services": [
     {
       "num": "01",
-      "image": "brand-02.jpg",
+      "image": "",
       "imageAlt": "Brand Identity",
       "title": "Brand Identity &amp; Visual Systems",
       "description": "Logo, color palette, typography, and brand guidelines — everything your team needs to communicate consistently across every platform."
     },
     {
       "num": "02",
-      "image": "revista-CMS.png",
+      "image": "",
       "imageAlt": "Print & Editorial",
       "title": "Print &amp; Editorial Layout",
       "description": "Booklets, prayer guides, handbooks, study materials, and curriculum — designed to be read, kept, and passed on."
     },
     {
       "num": "03",
-      "image": "Sermon Series Graphics.jpg",
+      "image": "",
       "imageAlt": "Sermon Series Graphics",
       "title": "Sermon Series Graphics",
       "description": "Series branding, social media packages, screen slides, and promotional assets — built for your cadence, consistent across every touchpoint."
     },
     {
       "num": "04",
-      "image": "Libros.jpg",
-      "imageAlt": "Book & Bible Design",
-      "title": "Book &amp; Bible Design",
-      "description": "Editorial design for Christian publishers — devotionals, study Bibles, curricula, and resources built to hold up across print runs and formats."
-   
-    },
-    {
-      "num": "05",
-      "image": "Event-Brand-Identity-02.jpg",
+      "image": "",
       "imageAlt": "Event Brand Identity",
       "title": "Event Brand Identity",
       "description": "Visual identity for conferences, retreats, camps, and special services — a cohesive look that extends across print, digital, and on-site signage."
     },
     {
+      "num": "05",
+      "image": "",
+      "imageAlt": "Book & Bible Design",
+      "title": "Book &amp; Bible Design",
+      "description": "Editorial design for Christian publishers — devotionals, study Bibles, curricula, and resources built to hold up across print runs and formats."
+    },
+    {
       "num": "06",
-      "image": "web.jpg",
+      "image": "",
       "imageAlt": "Web & Digital",
       "title": "Web &amp; Digital",
       "description": "Website layouts, app screen design, and digital assets — visual systems that translate from print to screen without losing integrity."
     }
   ],
   "about": {
-    "photo": "foto-barby-ok.png",
+    "photo": "",
     "photoAlt": "Bárbara Soriano",
     "stats": [
-      { "num": "50+", "label": "US churches" },
-      { "num": "15+", "label": "Years experience" },
-      { "num": "20+", "label": "Countries reached" }
+      {
+        "num": "50+",
+        "label": "US churches"
+      },
+      {
+        "num": "15+",
+        "label": "Years experience"
+      },
+      {
+        "num": "20+",
+        "label": "Countries reached"
+      }
     ],
     "h2": "Identity for <em>faith</em><br>communities.",
-    "paragraphs": <p class="reveal reveal-delay-1">
-  I'm <strong>Barbara Soriano</strong>, a brand and graphic designer based in Buenos Aires, Argentina, with over
-  <strong>15 years of experience</strong> helping churches and Christian organizations communicate with clarity through branding, editorial, print, and digital design.
-</p>
-
-<p class="reveal reveal-delay-2">
-  My design journey began in my local church, where I discovered how thoughtful design can support ministry. Since then, I've worked with churches across the United States and Latin America, creating sermon series, event identities, books, discipleship resources, membership guides, and complete church rebrands.
-</p>
-
-<p class="reveal reveal-delay-3">
-  For three years I was part of the <strong>Church Media Squad</strong> team, producing weekly creative content for U.S. churches. I've also worked with <strong>e625</strong> for more than a decade, designing books, Bibles, curricula, and digital resources for ministries in over 20 countries. I don't just design for churches—I understand how they work.
-</p>,
+    "paragraphs": [
+      "I'm <strong>Barbara Soriano</strong>, a brand and graphic designer based in Buenos Aires, Argentina, with over <strong>15 years of experience</strong> helping churches and Christian organizations communicate with clarity through branding, editorial, print, and digital design.",
+      "My design journey began in my local church, where I discovered how thoughtful design can support ministry. Since then, I've worked with churches across the United States and Latin America, creating sermon series, event identities, books, discipleship resources, membership guides, and complete church rebrands.",
+      "For three years I was part of the <strong>Church Media Squad</strong> team, producing weekly creative content for U.S. churches. I've also worked with <strong>e625</strong> for more than a decade, designing books, Bibles, curricula, and digital resources for ministries in over 20 countries. I don't just design for churches—I understand how they work."
+    ],
     "ctaText": "Start a conversation →"
   },
   "testimonials": [
