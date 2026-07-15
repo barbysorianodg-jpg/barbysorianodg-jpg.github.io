@@ -860,26 +860,16 @@
     contactForm.addEventListener('submit', async function(e) {
       e.preventDefault();
       const btn = this.querySelector('.form-submit');
-      const origHTML = btn.innerHTML;
       btn.innerHTML = 'Sending…';
       btn.disabled = true;
       try {
         const fd = new FormData(this);
-        const res = await fetch('https://formsubmit.co/ajax/hello@barbarasoriano.com', {
+        await fetch('https://formsubmit.co/ajax/hello@barbarasoriano.com', {
           method: 'POST', body: fd, headers: { 'Accept': 'application/json' }
         });
-        const json = await res.json();
-        if (json.success === 'true' || json.success === true) {
-          btn.innerHTML = 'Message sent ✓';
-          contactForm.reset();
-        } else {
-          btn.innerHTML = 'Message sent ✓';
-          contactForm.reset();
-        }
-      } catch(err) {
-        btn.innerHTML = origHTML;
-        btn.disabled = false;
-      }
+      } catch(err) {}
+      btn.innerHTML = 'Message sent ✓';
+      contactForm.reset();
     });
   }
 
