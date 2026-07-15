@@ -701,7 +701,7 @@
       </div>
 
       <div class="contact-form-card reveal reveal-delay-2">
-        <form id="contactForm" action="https://formsubmit.co/hello@barbarasoriano.com" method="POST">
+        <form id="contactForm" action="https://formsubmit.co/barbysoriano.dg@gmail.com" method="POST">
           <input type="hidden" name="_subject" value="New inquiry — churches.barbarasoriano.com" />
           <input type="hidden" name="_captcha" value="false" />
           <input type="hidden" name="_next" value="https://churches.barbarasoriano.com/#contact" />
@@ -875,6 +875,17 @@
     });
   }
 
+
+
+  // —— Contact form ——
+  const contactForm = document.getElementById('contactForm');
+  if (contactForm) {
+    contactForm.addEventListener('submit', function() {
+      const btn = this.querySelector('.form-submit');
+      btn.innerHTML = 'Sending…';
+      btn.disabled = true;
+    });
+  }
 </script>
 
 </body>
