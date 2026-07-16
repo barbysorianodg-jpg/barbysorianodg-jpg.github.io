@@ -1,56 +1,56 @@
 {
   "hero": {
     "tag": "For Churches & Faith Organizations",
-    "h1": "Design that speaks<br><em>your language.</em>",
-    "sub": "With <strong>over 15 years of experience</strong>, I’ve worked alongside faith organizations — from complete rebrands to weekly print materials, curricula, and publishing. I understand the mission, the timeline, and what it takes to communicate it well.",
+    "h1": "Branding that serves the mission.",
+    "sub": "With <strong>over 15 years of experience</strong> serving churches across the U.S. and Latin America, I create brands, sermon series, editorial resources, and communication systems that help ministries share their message with clarity and excellence.",
     "video": "hero-video.mp4"
   },
   "services": [
     {
       "num": "01",
-      "image": "",
+      "image": "brand-02.jpg",
       "imageAlt": "Brand Identity",
       "title": "Brand Identity &amp; Visual Systems",
       "description": "Logo, color palette, typography, and brand guidelines — everything your team needs to communicate consistently across every platform."
     },
     {
       "num": "02",
-      "image": "",
+      "image": "revista-CMS.png",
       "imageAlt": "Print & Editorial",
       "title": "Print &amp; Editorial Layout",
       "description": "Booklets, prayer guides, handbooks, study materials, and curriculum — designed to be read, kept, and passed on."
     },
     {
       "num": "03",
-      "image": "",
+      "image": "Sermon Series Graphics.jpg",
       "imageAlt": "Sermon Series Graphics",
       "title": "Sermon Series Graphics",
       "description": "Series branding, social media packages, screen slides, and promotional assets — built for your cadence, consistent across every touchpoint."
     },
     {
       "num": "04",
-      "image": "",
+      "image": "Libros.jpg",
       "imageAlt": "Event Brand Identity",
       "title": "Event Brand Identity",
       "description": "Visual identity for conferences, retreats, camps, and special services — a cohesive look that extends across print, digital, and on-site signage."
     },
     {
       "num": "05",
-      "image": "",
+      "image": "Event-Brand-Identity-02.jpg",
       "imageAlt": "Book & Bible Design",
       "title": "Book &amp; Bible Design",
       "description": "Editorial design for Christian publishers — devotionals, study Bibles, curricula, and resources built to hold up across print runs and formats."
     },
     {
       "num": "06",
-      "image": "",
+      "image": "web.jpg",
       "imageAlt": "Web & Digital",
       "title": "Web &amp; Digital",
       "description": "Website layouts, app screen design, and digital assets — visual systems that translate from print to screen without losing integrity."
     }
   ],
   "about": {
-    "photo": "",
+    "photo": "foto-barby-ok.png",
     "photoAlt": "Bárbara Soriano",
     "stats": [
       {
@@ -68,10 +68,9 @@
     ],
     "h2": "Identity for <em>faith</em><br>communities.",
     "paragraphs": [
-      "I’m a brand and graphic designer based in Buenos Aires with over <strong>15 years of experience</strong>. For three years I was part of the <strong>Church Media Squad</strong> team, producing weekly visual content and print materials for churches across the United States.",
-      "I’ve also worked with <strong>e625</strong> — a pan-Latin American Christian media organization — designing books, Bibles, curricula, and digital content distributed across 20+ countries.",
-      "I’ve led full rebrands for multiple churches — from identity and brand guidelines through to signage, print, and digital — and I’ve designed everything from sermon booklets to membership handbooks to staff manuals across dozens of different church identities and sizes.",
-      "I know your world. I know the cadence, the budget conversations, the last-minute sermon series graphic, and the care that goes into a prayer guide. That’s not something you have to explain to me."
+      "I’m <strong>Barbara Soriano</strong>, a brand and graphic designer based in Buenos Aires, Argentina, with over <strong>15 years of experience</strong> helping churches and Christian organizations communicate with clarity through branding, editorial, print, and digital design.",
+      "My design journey began in my local church, where I discovered how thoughtful design can support ministry. Since then, I’ve worked with churches across the United States and Latin America, creating sermon series, event identities, books, discipleship resources, membership guides, and complete church rebrands.",
+      "For three years I was part of the <strong>Church Media Squad</strong> team, producing weekly creative content for U.S. churches. I’ve also worked with <strong>e625</strong> for more than a decade, designing books, Bibles, curricula, and digital resources for ministries in over 20 countries. I don’t just design for churches—I understand how they work."
     ],
     "ctaText": "Start a conversation →"
   },
